@@ -2,7 +2,7 @@
 <html> <!-- Envuelve todo el contenido de la página -->
 <head> <!-- Contiene información sobre la página, como el título -->
 <meta charset="UTF-8"> <!-- el documento HTML utiliza la codificación de caracteres UTF-8. Esto es importante para asegurar que los caracteres especiales y símbolos se muestren correctamente en tu página web. -->
-<link rel="stylesheet" type="text/css" href="styles.css"> <!-- enlazar este archivo CSS con tu archivo HTML -->
+<link rel="stylesheet" type="text/css" href="../css/styles.css"> <!-- enlazar este archivo CSS con tu archivo HTML -->
 </head>
 <body> <!-- Contiene el contenido visible de la página web -->
 <!-- Diseño de un login en html y css con footer, header, section, comentarios, logo, responsive, flexbox y grid -->
@@ -29,7 +29,7 @@
           <input type="text" placeholder="Ingresa tu nombre de usuario" name="uname" required>
           <label for="psw"><b>Elige una contraseña</b></label>
           <input type="password" placeholder="Ingresa tu contraseña" name="psw" required>
-          <button type="submit">Iniciar sesión</button>
+          <button id="msj-login" type="submit">Iniciar sesión</button>
           <label>
             <input type="checkbox" checked="checked" name="remember"> Recordarme
           </label>
@@ -70,4 +70,5 @@
     </div>
   </footer>
 </body>
+<script src="../js/prueba.js"></script>
 </html>
