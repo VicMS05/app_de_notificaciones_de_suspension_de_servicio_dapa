@@ -1,0 +1,137 @@
+/*PARA EL PANEL DE ADMINISTRADOR, EDITAR ESTATUS, AGREGAR/EDITAR/ELIMINAR ZONA*/
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #ffffff, #ffffff, #ffffff);
+  color: #333;
+  
+}
+
+/* Aplicando Flexbox para alinear los elementos en el eje principal */
+header, nav, article, footer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+header {
+  /* background-color: #f0f0f0; Color de fondo del encabezado, ajusta según tus preferencias */
+  padding: px; /* Espaciado interno del encabezado */
+  text-align: center; /* Centra el contenido del encabezado */
+}
+
+/* Estilos para la imagen del logo en el encabezado */
+.header img {
+  width: 80%; /* Ancho de la imagen al 100% del contenedor */
+  max-height: 200px !important; /* Ajusta la altura máxima de la imagen según tus necesidades */
+  display: block; /* Asegura que la imagen se comporte como un bloque */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+/* Nuevos estilos para los botones en el header */
+.header-buttons {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+}
+
+.header-buttons button {
+  background-color: #2ecc71;
+  /* color: #fff; */
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.header-buttons button:hover {
+  background-color: #27ae60;
+}
+
+
+/* Main Content Styles */
+article {
+  
+  margin: auto; /* Centra el artículo horizontalmente en la página */
+  max-width: 2000px; /* Ajusta el ancho máximo del contenido principal */
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  overflow: hidden; /* Para manejar el contenido que excede */
+}
+
+/* Section Styles */
+section {
+  padding:50px;
+  text-align: center;
+  width: 100%; /* Abarca todo el ancho del contenedor principal */
+  margin: 0 auto; /* Centra la sección horizontalmente */
+  max-width: 80%; /* Ajusta el ancho máximo según tus preferencias */
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+   /* margin: auto;Centra la tabla horizontalmente dentro de la sección */
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: center;
+
+}
+
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* Button Styles */
+button {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+  header, nav, article, footer {
+      margin: 10px;
+  }
+}
+
+
+
+/*PARA EL CREAR CUENTA DEL ADMINISTRADOR*/
+
+
