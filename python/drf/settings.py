@@ -30,13 +30,14 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ # arreglo de apps instaladas
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api' # agregue api a las apps instaladas
 ]
 
 MIDDLEWARE = [
@@ -73,10 +74,17 @@ WSGI_APPLICATION = 'drf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { # arreglo de variables de la conexión a la base de datos
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql', # motor de base de datos
+        'HOST': 'localhost', # host de la base de datos
+        'PORT': '3306', # puerto de la base de datos
+        'USER': 'root', # usuario de la base de datos
+        'PASSWORD': '', # contraseña de la base de datos
+        'NAME': 'serviciodapa', # nombre de la base de datos
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" # modo estricto de la base de datos
+        }
     }
 }
 
@@ -103,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' # lenguaje de la aplicación
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC' # zona horaria de la aplicación
 
 USE_I18N = True
 
