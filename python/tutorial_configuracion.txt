@@ -3,3 +3,4 @@
 3.- En drf/settings.py agregar 'api' al arreglo INSTALLED_APPS.
 4.- En la misma carpeta configurar el arreglo DATABASES para que tenga variables para una conexión a una base de datos de MySQL, ya que por defecto viene para una conexión para SQLite3.
 5.- Establecer la conexión entre Django y la base de datos en PhpMyAdmin, con el comando "python manage.py migrate" para migrar algunas tablas que Django ocupa en PhpMyAdmin.
+6.- Generar los modelos Django a partir de las tablas de la base de datos en PhpMyAdmin, con el comando "python manage.py inspectdb > models.py" y mover el archivo models.py a la carpeta api.
