@@ -1,13 +1,7 @@
-@import url("https://use.fontawesome.com/releases/v6.4.2/css/all.css");
-
-.password{
-    position: relative;
-}
-
-i{
-    right: 20px;
-    top: 50%;
-    transform: translate(-50%);
+.password-button {
+    border: none;
+    outline: none;
+    background: none;
     cursor: pointer;
-    user-select: none;    
-}
+    color: gray;
+  }

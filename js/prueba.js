@@ -13,3 +13,4 @@ const showHidePassword = () => {
 };
 
 $toggler.addEventListener('click', showHidePassword);
+
