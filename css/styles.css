@@ -363,3 +363,17 @@ transform: translateX(200%);
   padding: 50px;
   max-width: 500px; /* Ajusta el valor según tus necesidades */
 }
+.container button {
+  background-color: #2ecc71;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+  }
+
