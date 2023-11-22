@@ -343,14 +343,23 @@ transform: translateX(200%);
 
 .container {
   background-color: #fff;
+  padding: 50px;
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   /* position: relative; */
-  width: 50%; /* Puedes ajustar el ancho según tus necesidades */
+  /* width: 100%; Puedes ajustar el ancho según tus necesidades */
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
   width: 768px;
   max-width: 100%;
   min-height: 480px;
+  text-align: center;
   }
+
+.inputs{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+  max-width: 500px; /* Ajusta el valor según tus necesidades */
+}
