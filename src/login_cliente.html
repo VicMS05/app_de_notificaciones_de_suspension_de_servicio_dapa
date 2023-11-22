@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/styles_ocultar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <title>Login Cliente</title>
@@ -28,11 +29,11 @@
 <input type="email" placeholder="Correo Electrónico">
 <input type="text" placeholder="Sector">
 <input type="number" placeholder="Número de contrato">
-<div class="password-container">
+<div class="passwordocultar">
     <!-- Input de la contraseña -->
     <input id="password-input" class="password-input" type="password" placeholder="Ingresa tu contraseña">
     <!-- Botón de mostrar/ocultar -->
-    <button id="password-button" class="password-button">
+    <button id="password-button" class="password-button" style="background-color: white; padding: 5px; margin: 5px;">
       <!-- Icono de ojo cerrado por defecto -->
       <i id="password-icon" class="fas fa-eye-slash"></i>
     </button>
@@ -52,11 +53,11 @@
 <!-- <span>or use your email password</span> -->
 <!-- <label for="usuario">Correo o número de contrato:</label> -->
 <input type="text" id="usuario" name="usuario" placeholder="Correo electrónico o número de contrato">
-<div class="password-container">
+<div class="passwordocultar">
     <!-- Input de la contraseña -->
     <input id="password-input1" class="password-input" type="password" placeholder="Ingresa tu contraseña">
     <!-- Botón de mostrar/ocultar -->
-    <button id="password-button1" class="password-button">
+    <button id="password-button1" class="password-button" style="background-color: white; padding: 5px; margin: 5px;">
       <!-- Icono de ojo cerrado por defecto -->
       <i id="password-icon1" class="fas fa-eye-slash"></i>
     </button>
