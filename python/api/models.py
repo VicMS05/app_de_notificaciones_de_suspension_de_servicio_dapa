@@ -9,6 +9,8 @@ class Administrador(models.Model):
     contraadmin = models.CharField(db_column='contraAdmin', max_length=10)  # Field name made lowercase.
     correoadmin = models.CharField(db_column='correoAdmin', max_length=35)  # Field name made lowercase.
 
+    objects = models.Manager()
+
     class Meta:
         managed = False
         db_table = 'administrador'
@@ -88,6 +90,7 @@ class Catalogozonas(models.Model):
     colonia = models.IntegerField()
     codigopostal = models.IntegerField(db_column='codigoPostal')  # Field name made lowercase.
 
+    objects = models.Manager()
     class Meta:
         managed = False
         db_table = 'catalogozonas'
@@ -105,6 +108,7 @@ class Cliente(models.Model):
     numextcliente = models.CharField(db_column='numExtCliente', max_length=5)  # Field name made lowercase.
     cpcliente = models.IntegerField(db_column='cpCliente')  # Field name made lowercase.
 
+    objects = models.Manager()
     class Meta:
         managed = False
         db_table = 'cliente'
@@ -162,6 +166,7 @@ class Reportefallas(models.Model):
     estatusrep = models.CharField(db_column='estatusRep', max_length=20)  # Field name made lowercase.
     clavecliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='claveCliente')  # Field name made lowercase.
 
+    objects = models.Manager()
     class Meta:
         managed = False
         db_table = 'reportefallas'
