@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6##4rpay7z8@=csr_9*3&ln+&=wzqi6mf0@50k0y!=@#an5p6a'
+SECRET_KEY = 'django-insecure-*m(fgt_ilt&e4hir7bssw-gn6w0h)kw6$_em!=k=pgg2b0#y=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [ # arreglo de apps instaladas
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'drf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = { # arreglo de variables de la conexión a la base de datos
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # motor de base de datos
         'HOST': 'localhost', # host de la base de datos
@@ -111,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' # lenguaje de la aplicación
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC' # zona horaria de la aplicación
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
