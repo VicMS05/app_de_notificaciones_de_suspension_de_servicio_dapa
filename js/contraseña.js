@@ -6,6 +6,14 @@
     const passwordIcon = document.getElementById("password-icon");
     const passwordIcon1 = document.getElementById("password-icon1");
 
+    passwordButton.addEventListener('click', (e) => {
+      e.preventDefault();
+    })
+
+    passwordButton1.addEventListener('click', (e) => {
+      e.preventDefault();
+    })
+
     // Agregar un evento de click al botón
     passwordButton.addEventListener("click", function() {
       // Obtener el tipo actual del input
