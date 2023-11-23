@@ -1,0 +1,16 @@
+.password-button {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: gray;
+    position: relative;
+    margin: 1px;
+    width: 10%;
+    /* padding: 10px; */
+  }
+
+  i{
+    font-size: 15px;
+    color: rgb(80, 79, 79);
+  }
