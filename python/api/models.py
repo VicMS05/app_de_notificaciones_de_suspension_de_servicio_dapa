@@ -86,8 +86,8 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Catalogozonas(models.Model):
-    idzona = models.IntegerField(db_column='idZona', primary_key=True)  # Field name made lowercase.
-    colonia = models.IntegerField()
+    idzona = models.AutoField(db_column='idZona', primary_key=True)  # Field name made lowercase.
+    colonia = models.CharField(db_column='Colonia', max_length=50)  # Field name made lowercase.
     codigopostal = models.IntegerField(db_column='codigoPostal')  # Field name made lowercase.
 
     objects = models.Manager()
@@ -160,7 +160,7 @@ class DjangoSession(models.Model):
 
 
 class Reportefallas(models.Model):
-    idfalla = models.IntegerField(db_column='idFalla', primary_key=True)  # Field name made lowercase.
+    idfalla = models.AutoField(db_column='idFalla', primary_key=True)  # Field name made lowercase.
     motivorep = models.CharField(db_column='motivoRep', max_length=50)  # Field name made lowercase.
     fecharep = models.DateField(db_column='fechaRep')  # Field name made lowercase.
     estatusrep = models.CharField(db_column='estatusRep', max_length=20)  # Field name made lowercase.
