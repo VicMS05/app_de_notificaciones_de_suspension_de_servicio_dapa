@@ -309,7 +309,7 @@ border-radius: 0 150px 100px 0;
 }
 .toggle {
 /* background-color: #512da8; */
-background-image: url('../img/logincliente.jpg');
+background-image: url('../img/loginimagen.jpeg');
 height: 100%;
 /* background: linear-gradient(to right, #5c6bc0, #512da8); */
 color: #fff;
@@ -324,6 +324,7 @@ transition: all 0.6s ease-in-out;
     transform: translateX(50%);
 }
 .toggle-panel {
+
 position: absolute;
 width: 50%;
 height: 100%;
@@ -331,7 +332,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-padding: 0 30px;
+padding: 34% 30px;
 text-align: center;
 top: 0;
 transform: translateX(0);
@@ -352,6 +353,33 @@ transform: translateX(200%);
 }
 
 /* PARA EL REPORTE DE FALLAS */
+
+.container_pantalla {
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  /* position: relative; */
+  /* width: 100%; Puedes ajustar el ancho según tus necesidades */
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 48px;
+  text-align: center;
+  }
+
+  .container_pantalla input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+  }
 
 .container {
   background-color: #fff;
