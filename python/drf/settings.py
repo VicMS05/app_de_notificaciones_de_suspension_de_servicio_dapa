@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # se agrega el middleware de cors
 ]
 
 ROOT_URLCONF = 'drf.urls'
@@ -129,3 +130,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_ALL_ORIGINS = True # se permite el acceso a la API desde cualquier origen
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",  # se permite el acceso a la API desde este origen
+]
