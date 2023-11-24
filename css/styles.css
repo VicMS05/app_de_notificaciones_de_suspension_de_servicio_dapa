@@ -18,21 +18,31 @@ header, nav, article, footer {
 
 /* Header Styles */
 header {
+  font-family: Arial;
   /* background-color: #f0f0f0; Color de fondo del encabezado, ajusta según tus preferencias */
   padding: px; /* Espaciado interno del encabezado */
   text-align: center; /* Centra el contenido del encabezado */
+  overflow: hidden;
 }
 
 /* Estilos para la imagen del logo en el encabezado */
 .header img {
-  width: 80%; /* Ancho de la imagen al 100% del contenedor */
-  max-height: 200px !important; /* Ajusta la altura máxima de la imagen según tus necesidades */
+  width: 100%; /* Ancho de la imagen al 100% del contenedor */
+  max-height: 100px !important; /* Ajusta la altura máxima de la imagen según tus necesidades */
+  object-fit: cover;
   display: block; /* Asegura que la imagen se comporte como un bloque */
   margin: 0 auto; /* Centra la imagen horizontalmente */
 }
 
 /* Nuevos estilos para los botones en el header */
-.header-buttons {
+.header-buttons1 {
+  display: flexbox;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+.header-buttons2 {
   display: flexbox;
   position: absolute;
   top: 60px;
@@ -58,7 +68,7 @@ header {
 
 /* Main Content Styles */
 article {
-  
+  font-family: Arial;
   margin: auto; /* Centra el artículo horizontalmente en la página */
   max-width: 2000px; /* Ajusta el ancho máximo del contenido principal */
   border-radius: 5px;
@@ -69,7 +79,7 @@ article {
 
 /* Section Styles */
 section {
-  padding:50px;
+  padding:20px;
   text-align: center;
   width: 100%; /* Abarca todo el ancho del contenedor principal */
   margin: 0 auto; /* Centra la sección horizontalmente */
@@ -83,6 +93,9 @@ table {
   border-collapse: collapse;
   margin-bottom: 20px;
   text-align: center;
+  border-radius: 0.5em;
+  overflow: hidden;
+  box-shadow: 7px 7px 5px rgba(67, 139, 139, 0.5);
 
 }
 
@@ -118,6 +131,7 @@ button:hover {
 
 /* Footer Styles */
 footer {
+  font-family: Arial;
   background-color: #3498db;
   color: #fff;
   text-align: center;
@@ -130,6 +144,18 @@ footer {
 .passwordocultar{
   display: flex;
   width: 100%;
+}
+
+h2{
+  font-family: Arial;
+  font-size: 36px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  padding: 4px;
+  text-align: center;
+  text-shadow: 2px 2px 3px #008b8b;
+  background-color: #add8e6;
+  color: white;
 }
 
 
