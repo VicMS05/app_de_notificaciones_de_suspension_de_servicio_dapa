@@ -14,12 +14,20 @@ class AdministradorView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request):
-        administradores = list(Administrador.objects.values())
-        if len(administradores) > 0:
-            datitos = {'message': "Operacion exitosa", 'administradores': administradores}
-        else:
-            datitos = {'message': "No hay administradores"}
+    def get(self, request, id=0):
+        if (id>0): # Si se envia un id, se obtiene un registro en especifico
+            administradores = list(Administrador.objects.filter(idadmin=id).values())
+            if len(administradores) > 0:
+                administrador = administradores[0]
+                datitos = {'message': "Operacion exitosa", 'administrador': administrador}
+            else:
+                datitos = {'message': "No existe el administrador o la administradora"}
+        else: # Si no se envia un id, se obtienen todos los registros
+            administradores = list(Administrador.objects.values())
+            if len(administradores) > 0:
+                datitos = {'message': "Operacion exitosa", 'administradores': administradores}
+            else:
+                datitos = {'message': "No hay administradores"}
         return JsonResponse(datitos)
 
     def post(self, request):
@@ -46,12 +54,20 @@ class CatalogozonasView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
         
-    def get(self, request):
-        zonas = list(Catalogozonas.objects.values())
-        if len(zonas) > 0:
-            datitos = {'message': "Operacion exitosa", 'administradores': zonas}
-        else:
-            datitos = {'message': "No hay zonas"}
+    def get(self, request, id=0):
+        if (id>0): # Si se envia un id, se obtiene un registro en especifico
+            zonas = list(Catalogozonas.objects.filter(idzona=id).values())
+            if len(zonas) > 0:
+                zona = zonas[0]
+                datitos = {'message': "Operacion exitosa", 'zona': zona}
+            else:
+                datitos = {'message': "No existe la zona"}
+        else: # Si no se envia un id, se obtienen todos los registros
+            zonas = list(Catalogozonas.objects.values())
+            if len(zonas) > 0:
+                datitos = {'message': "Operacion exitosa", 'zonas': zonas}
+            else:
+                datitos = {'message': "No hay zonas"}
         return JsonResponse(datitos)
 
     def post(self, request):
@@ -76,12 +92,20 @@ class ClienteView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
         
-    def get(self, request):
-        clientes = list(Cliente.objects.values())
-        if len(clientes) > 0:
-            datitos = {'message': "Operacion exitosa", 'administradores': clientes}
-        else:
-            datitos = {'message': "No hay clientes"}
+    def get(self, request, id=0):
+        if (id>0): # Si se envia un id, se obtiene un registro en especifico
+            clientes = list(Cliente.objects.filter(idcliente=id).values())
+            if len(clientes) > 0:
+                cliente = clientes[0]
+                datitos = {'message': "Operacion exitosa", 'cliente': cliente}
+            else:
+                datitos = {'message': "No existe el cliente"}
+        else: # Si no se envia un id, se obtienen todos los registros
+            clientes = list(Cliente.objects.values())
+            if len(clientes) > 0:
+                datitos = {'message': "Operacion exitosa", 'clientes': clientes}
+            else:
+                datitos = {'message': "No hay clientes"}
         return JsonResponse(datitos)
 
     def post(self, request):
@@ -112,12 +136,20 @@ class ReportefallasView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
         
-    def get(self, request):
-        fallas = list(Reportefallas.objects.values())
-        if len(fallas) > 0:
-            datitos = {'message': "Operacion exitosa", 'administradores': fallas}
-        else:
-            datitos = {'message': "No hay fallas"}
+    def get(self, request, id=0):
+        if (id>0): # Si se envia un id, se obtiene un registro en especifico
+            reportes = list(Reportefallas.objects.filter(idreporte=id).values())
+            if len(reportes) > 0:
+                reporte = reportes[0]
+                datitos = {'message': "Operacion exitosa", 'reporte': reporte}
+            else:
+                datitos = {'message': "No existe el reporte"}
+        else: # Si no se envia un id, se obtienen todos los registros
+            reportes = list(Reportefallas.objects.values())
+            if len(reportes) > 0:
+                datitos = {'message': "Operacion exitosa", 'reportes': reportes}
+            else:
+                datitos = {'message': "No hay reportes"}
         return JsonResponse(datitos)
 
     def post(self, request):
