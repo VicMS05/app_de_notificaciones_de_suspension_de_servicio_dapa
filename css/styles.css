@@ -187,13 +187,13 @@ margin: 15px 0 10px;
 .container button {
 background-color: #3498db;
 color: #fff;
-font-size: 12px;
+font-size: 14px;
 padding: 10px 20px;
 border: 1px solid transparent;
 border-radius: 8px;
 font-weight: 600;
 letter-spacing: 0.5px;
-text-transform: uppercase;
+/* text-transform: uppercase; */
 margin-top: 10px;
 cursor: pointer;
 }
@@ -372,7 +372,7 @@ transform: translateX(200%);
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin-top: 10px;
   cursor: pointer;
   }
