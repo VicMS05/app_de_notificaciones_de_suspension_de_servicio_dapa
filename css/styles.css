@@ -9,6 +9,7 @@ body {
   
 }
 
+
 /* Aplicando Flexbox para alinear los elementos en el eje principal */
 header, nav, article, footer {
   display: flex;
@@ -32,8 +33,9 @@ header {
 
 /* Nuevos estilos para los botones en el header */
 .header-buttons {
+  display: flexbox;
   position: absolute;
-  top: 40px;
+  top: 60px;
   right: 10px;
 }
 
