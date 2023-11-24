@@ -21,18 +21,27 @@ header {
   /* background-color: #f0f0f0; Color de fondo del encabezado, ajusta según tus preferencias */
   padding: px; /* Espaciado interno del encabezado */
   text-align: center; /* Centra el contenido del encabezado */
+  overflow: hidden;
 }
 
 /* Estilos para la imagen del logo en el encabezado */
 .header img {
-  width: 80%; /* Ancho de la imagen al 100% del contenedor */
-  max-height: 200px !important; /* Ajusta la altura máxima de la imagen según tus necesidades */
+  width: 100%; /* Ancho de la imagen al 100% del contenedor */
+  max-height: 100px !important; /* Ajusta la altura máxima de la imagen según tus necesidades */
+  object-fit: cover;
   display: block; /* Asegura que la imagen se comporte como un bloque */
   margin: 0 auto; /* Centra la imagen horizontalmente */
 }
 
 /* Nuevos estilos para los botones en el header */
-.header-buttons {
+.header-buttons1 {
+  display: flexbox;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+.header-buttons2 {
   display: flexbox;
   position: absolute;
   top: 60px;
@@ -69,7 +78,7 @@ article {
 
 /* Section Styles */
 section {
-  padding:50px;
+  padding:20px;
   text-align: center;
   width: 100%; /* Abarca todo el ancho del contenedor principal */
   margin: 0 auto; /* Centra la sección horizontalmente */
