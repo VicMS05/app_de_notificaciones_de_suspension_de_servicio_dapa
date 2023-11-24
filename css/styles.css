@@ -18,6 +18,7 @@ header, nav, article, footer {
 
 /* Header Styles */
 header {
+  font-family: Arial;
   /* background-color: #f0f0f0; Color de fondo del encabezado, ajusta según tus preferencias */
   padding: px; /* Espaciado interno del encabezado */
   text-align: center; /* Centra el contenido del encabezado */
@@ -67,7 +68,7 @@ header {
 
 /* Main Content Styles */
 article {
-  
+  font-family: Arial;
   margin: auto; /* Centra el artículo horizontalmente en la página */
   max-width: 2000px; /* Ajusta el ancho máximo del contenido principal */
   border-radius: 5px;
@@ -92,6 +93,9 @@ table {
   border-collapse: collapse;
   margin-bottom: 20px;
   text-align: center;
+  border-radius: 0.5em;
+  overflow: hidden;
+  box-shadow: 7px 7px 5px rgba(67, 139, 139, 0.5);
 
 }
 
@@ -127,6 +131,7 @@ button:hover {
 
 /* Footer Styles */
 footer {
+  font-family: Arial;
   background-color: #3498db;
   color: #fff;
   text-align: center;
@@ -139,6 +144,18 @@ footer {
 .passwordocultar{
   display: flex;
   width: 100%;
+}
+
+h2{
+  font-family: Arial;
+  font-size: 36px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  padding: 4px;
+  text-align: center;
+  text-shadow: 2px 2px 3px #008b8b;
+  background-color: #add8e6;
+  color: white;
 }
 
 
