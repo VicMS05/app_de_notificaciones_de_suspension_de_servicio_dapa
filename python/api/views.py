@@ -39,13 +39,15 @@ class AdministradorView(View):
     def post(self, request):
         # Se obtiene el JSON enviado por el cliente
         jd = json.loads(request.body)
-        Administrador.objects.create(  # Se crea un nuevo registro en la tabla Administrador
+        administrador = Administrador.objects.create(  # Se crea un nuevo registro en la tabla Administrador
             nombreadmin=jd['nombreadmin'],  # Se obtienen los valores del JSON
             appatadmin=jd['appatadmin'],  # Se obtienen los valores del JSON
             apmatadmin=jd['apmatadmin'],  # Se obtienen los valores del JSON
             contraadmin=jd['contraadmin'],  # Se obtienen los valores del JSON
             correoadmin=jd['correoadmin'],  # Se obtienen los valores del JSON
         )
+        administrador.set_contraadmin_password(administrador.contracliente)
+        administrador.save()
         datitos = {'message': "Operación exitosa"}
         return JsonResponse(datitos)
 
@@ -179,7 +181,8 @@ class ClienteView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        Cliente.objects.create(
+        cliente = Cliente.objects.create(
+            idcliente=jd['idcliente'],
             nombrecliente=jd['nombrecliente'],
             appatcliente=jd['appatcliente'],
             apmatcliente=jd['apmatcliente'],
@@ -190,6 +193,8 @@ class ClienteView(View):
             numextcliente=jd['numextcliente'],
             cpcliente=jd['cpcliente'],
         )
+        cliente.set_contracliente_password(cliente.contracliente)
+        cliente.save()
         datitos = {'message': "Operación exitosa"}
         return JsonResponse(datitos)
 
