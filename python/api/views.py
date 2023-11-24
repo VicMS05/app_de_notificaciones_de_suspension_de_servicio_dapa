@@ -31,22 +31,41 @@ class AdministradorView(View):
         return JsonResponse(datitos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        Administrador.objects.create(
-            nombreadmin = jd['nombreadmin'],
-            appatadmin = jd['appatadmin'],
-            apmatadmin = jd['apmatadmin'],
-            contraadmin = jd['contraadmin'],
-            correoadmin = jd['correoadmin'],
+        jd = json.loads(request.body) # Se obtiene el JSON enviado por el cliente
+        Administrador.objects.create( # Se crea un nuevo registro en la tabla Administrador
+            nombreadmin = jd['nombreadmin'], # Se obtienen los valores del JSON
+            appatadmin = jd['appatadmin'], # Se obtienen los valores del JSON
+            apmatadmin = jd['apmatadmin'], # Se obtienen los valores del JSON
+            contraadmin = jd['contraadmin'], # Se obtienen los valores del JSON
+            correoadmin = jd['correoadmin'], # Se obtienen los valores del JSON
         )
         datitos = {'message': "Operación exitosa"}
         return JsonResponse(datitos)
     
-    def put(self, request):
-        pass
+    def put(self, request, id):
+        jd = json.loads(request.body) # Se obtiene el JSON enviado por el cliente
+        administradores = list(Administrador.objects.filter(idadmin=id).values()) # Se obtiene el registro a modificar
+        if len(administradores) > 0: #Si existe el registro
+            administrador = Administrador.objects.get(idadmin=id) # Se obtiene el registro a modificar
+            administrador.nombreadmin = jd['nombreadmin'] # Se obtienen los valores del JSON
+            administrador.appatadmin = jd['appatadmin'] # Se obtienen los valores del JSON
+            administrador.apmatadmin = jd['apmatadmin'] # Se obtienen los valores del JSON
+            administrador.contraadmin = jd['contraadmin'] # Se obtienen los valores del JSON
+            administrador.correoadmin = jd['correoadmin'] # Se obtienen los valores del JSON
+            administrador.save() # Se guardan los cambios
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else:
+            datitos = {'message': "No existe el administrador o la administradora"} # Si no existe el registro
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
     
-    def delete(self, request):
-        pass
+    def delete(self, request, id):
+        administradores = list(Administrador.objects.filter(idadmin=id).values()) # Se obtiene el registro a eliminar
+        if len(administradores) > 0: # Si existe el registro
+            Administrador.objects.filter(idadmin=id).delete() # Se elimina el registro
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else: # Si no existe el registro
+            datitos = {'message': "No existe el administrador o la administradora"} # Se envia un mensaje de error
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
 
 class CatalogozonasView(View):
     
@@ -80,11 +99,26 @@ class CatalogozonasView(View):
         datitos = {'message': "Operación exitosa"}
         return JsonResponse(datitos)
     
-    def put(self, request):
-        pass
+    def put(self, request, id):
+        jd = json.loads(request.body) # Se obtiene el JSON enviado por el cliente
+        zonas = list(Catalogozonas.objects.filter(idzonas=id).values()) # Se obtiene el registro a modificar
+        if len(zonas) > 0: #Si existe el registro
+            zonas = Catalogozonas.objects.get(idzonas=id) # Se obtiene el registro a modificar
+            zonas.colonia = jd['colonia'] # Se obtienen los valores del JSON
+            zonas.codigopostal = jd['codigopostal'] # Se obtienen los valores del JSON
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else:
+            datitos = {'message': "No existe la zona"} # Si no existe el registro
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
     
-    def delete(self, request):
-        pass
+    def delete(self, request, id):
+        zonas = list(Catalogozonas.objects.filter(idzonas=id).values()) # Se obtiene el registro a eliminar
+        if len(zonas) > 0: # Si existe el registro
+            Catalogozonas.objects.filter(idzonas=id).delete() # Se elimina el registro
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else: # Si no existe el registro
+            datitos = {'message': "No existe la zona"} # Se envia un mensaje de error
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
 
 class ClienteView(View):
     
@@ -124,11 +158,33 @@ class ClienteView(View):
         datitos = {'message': "Operación exitosa"}
         return JsonResponse(datitos)
     
-    def put(self, request):
-        pass
+    def put(self, request, id):
+        jd = json.loads(request.body) # Se obtiene el JSON enviado por el cliente
+        clientes = list(Cliente.objects.filter(idcliente=id).values()) # Se obtiene el registro a modificar
+        if len(clientes) > 0: #Si existe el registro
+            clientes = Cliente.objects.get(idcliente=id) # Se obtiene el registro a modificar
+            clientes.nombrecliente = jd['nombrecliente'] # Se obtienen los valores del JSON
+            clientes.appatcliente = jd['appatcliente'] # Se obtienen los valores del JSON
+            clientes.apmatcliente = jd['apmatcliente'] # Se obtienen los valores del JSON
+            clientes.contracliente = jd['contracliente'] # Se obtienen los valores del JSON
+            clientes.correocliente = jd['correocliente'] # Se obtienen los valores del JSON
+            clientes.callecliente = jd['callecliente'] # Se obtienen los valores del JSON
+            clientes.colcliente = jd['colcliente'] # Se obtienen los valores del JSON
+            clientes.numextcliente = jd['numextcliente'] # Se obtienen los valores del JSON
+            clientes.cpcliente = jd['cpcliente'] # Se obtienen los valores del JSON
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else:
+            datitos = {'message': "No existe el o la cliente"} # Si no existe el registro
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
     
-    def delete(self, request):
-        pass
+    def delete(self, request, id):
+        clientes = list(Cliente.objects.filter(idcliente=id).values()) # Se obtiene el registro a eliminar
+        if len(clientes) > 0: # Si existe el registro
+            Cliente.objects.filter(idcliente=id).delete() # Se elimina el registro
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else: # Si no existe el registro
+            datitos = {'message': "No existe el o la cliente"} # Se envia un mensaje de error
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
 
 class ReportefallasView(View):
     
@@ -163,8 +219,25 @@ class ReportefallasView(View):
         datitos = {'message': "Operación exitosa"}
         return JsonResponse(datitos)
     
-    def put(self, request):
-        pass
+    def put(self, request, id):
+        jd = json.loads(request.body) # Se obtiene el JSON enviado por el cliente
+        reportes = list(Reportefallas.objects.filter(idreporte=id).values()) # Se obtiene el registro a modificar
+        if len(reportes) > 0: #Si existe el registro
+            reportes = Reportefallas.objects.get(idreporte=id) # Se obtiene el registro a modificar
+            reportes.motivorep  = jd['motivorep'] # Se obtienen los valores del JSON
+            reportes.fecharep = jd['fecharep'] # Se obtienen los valores del JSON
+            reportes.estatusrep = jd['estatusrep'] # Se obtienen los valores del JSON
+            reportes.clavecliente = jd['clavecliente'] # Se obtienen los valores del JSON
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else:
+            datitos = {'message': "No existe el reporte"} # Si no existe el registro
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
     
-    def delete(self, request):
-        pass
+    def delete(self, request, id):
+        reportes = list(Reportefallas.objects.filter(idreportes=id).values()) # Se obtiene el registro a eliminar
+        if len(reportes) > 0: # Si existe el registro
+            Reportefallas.objects.filter(idreportes=id).delete() # Se elimina el registro
+            datitos = {'message': "Operación exitosa"} # Se envia un mensaje de exito
+        else: # Si no existe el registro
+            datitos = {'message': "No existe el reporte"} # Se envia un mensaje de error
+        return JsonResponse(datitos) # Se envia la respuesta al cliente
