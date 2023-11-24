@@ -187,13 +187,13 @@ margin: 15px 0 10px;
 .container button {
 background-color: #3498db;
 color: #fff;
-font-size: 12px;
+font-size: 14px;
 padding: 10px 20px;
 border: 1px solid transparent;
 border-radius: 8px;
 font-weight: 600;
 letter-spacing: 0.5px;
-text-transform: uppercase;
+/* text-transform: uppercase; */
 margin-top: 10px;
 cursor: pointer;
 }
@@ -210,6 +210,18 @@ flex-direction: column;
 padding: 0 40px;
 height: 100%;
 }
+
+#containerinput {
+  background-color: #eee;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  }
+
 .container input {
 background-color: #eee;
 border: none;
@@ -372,7 +384,7 @@ transform: translateX(200%);
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin-top: 10px;
   cursor: pointer;
   }
