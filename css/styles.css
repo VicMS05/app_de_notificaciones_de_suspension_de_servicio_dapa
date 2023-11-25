@@ -51,7 +51,7 @@ header {
 }
 
 .header-buttons button {
-  background-color: #2ecc71;
+  background-color: #2d81c5;
   /* color: #fff; */
   padding: 12px;
   font-weight: bold;
@@ -114,7 +114,7 @@ th {
 
 /* Button Styles */
 button {
-  background-color: #2ecc71;
+  background-color: #2d81c5;
   color: #fff;
   padding: 10px;
   font-size: 15px;
@@ -128,11 +128,12 @@ button {
 }
 
 button:hover {
-  background-color: #27ae60;
+  background-color: #255ba1;
 }
 
 /* Footer Styles */
 footer {
+
   font-family: Arial;
   background-color: #3498db;
   color: #fff;
