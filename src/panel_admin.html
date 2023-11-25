@@ -3,20 +3,76 @@
 <head>
     <meta charset="UTF-8">
 
+    <link rel="stylesheet" href="../css/styles_pa.css">
     <link rel="stylesheet" href="../css/styles.css">
-
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <title>DAPA</title>
 </head>
 <body>
 
     <!-- Header  con botones de Iniciar Sesión y Crear Cuenta-->
     <header>
+        <div class="icon__menu" style="background-color: #2ecc71; width: 60px; height: 60px; position: absolute; left: 80px; top: 20px;">
+            <i class="fas fa-bars" id="btn_open" style="width: 50px; height: 45px; position: absolute; left: 5px; top: 18px; color: white;"></i>
+        </div>
         <img src="\img\headerdapa.jpg" alt="header Dapa" class="header">
-
-            <button id="btnCrearCuenta" class="header-buttons1">Crear cuenta</button>
-        <button id="btnCerrarSesion" class="header-buttons2">Cerrar sesión</button>
+            <!-- <button id="btnCrearCuenta" class="header-buttons1">Crear cuenta</button>
+        <button id="btnCerrarSesion" class="header-buttons2">Cerrar sesión</button> -->
 </header>
     <!-- Main Content -->
+    <div>
+        <div class="menu__side" id="menu_side">
+            <div class="name__page">
+                <i class="fa-solid fa-circle-user"></i>
+                <h4>MagtimusPro</h4>
+            </div>
+
+            <div class="options__menu">	
+
+                <a href="nvaCuentaAdmin.html" class="selected">
+                    <div class="option">
+                        <i class="fa-solid fa-user-plus" title="Crear cuenta"></i>
+                        <h4>Crear cuenta</h4>
+                    </div>
+                </a>
+    
+                <a href="editar_estatus.html">
+                    <div class="option">
+                        <i class="fa-solid fa-pen" title="Editar estatus"></i>
+                        <h4>Editar estatus</h4>
+                    </div>
+                </a>
+                
+                <a href="agregar_zona.html">
+                    <div class="option">
+                        <i class="fa-solid fa-plus" title="Agregar zona"></i>
+                        <h4>Agregar zona</h4>
+                    </div>
+                </a>
+    
+                <a href="editar_zona.html">
+                    <div class="option">
+                        <i class="fa-solid fa-pen-to-square" title="Editar zona"></i>
+                        <h4>Editar zona</h4>
+                    </div>
+                </a>
+    
+                <a href="eliminar_zona.html">
+                    <div class="option">
+                        <i class="fa-solid fa-trash" title="Eliminar zona"></i>
+                        <h4>Eliminar zona</h4>
+                    </div>
+                </a>
+    
+                <a href="login_admin.html">
+                    <div class="option">
+                        <i class="fa-solid fa-right-from-bracket" title="Cerrar sesion"></i>
+                        <h4>Cerrar Sesion</h4>
+                    </div>
+                </a>
+    
+            </div>
+        </div>
     <article>
         <section class="report-section">
             <h2>Reporte de fallas</h2>
@@ -37,7 +93,7 @@
                 </tbody>
             </table>
 
-            <a href="editar_estatus.html"><button id="btnEditarEstatus">Editar estatus</button></a>
+            <!-- <a href="editar_estatus.html"><button id="btnEditarEstatus">Editar estatus</button></a> -->
         </section>
 
         <section class="zones-section">
@@ -54,9 +110,9 @@
                     <!-- Aquí se llenarán dinámicamente los datos de la tabla -->
                 </tbody>
             </table>
-            <a href="agregar_zona.html"><button id="btnAgregarZona">Agregar zona</button></a>
+            <!-- <a href="agregar_zona.html"><button id="btnAgregarZona">Agregar zona</button></a>
             <a href="editar_zona.html"><button id="btnEditarZona">Editar zona</button></a>
-            <a href="eliminar_zona.html"><button id="btnEliminarZona">Eliminar zona</button></a>
+            <a href="eliminar_zona.html"><button id="btnEliminarZona">Eliminar zona</button></a> -->
         </section>
     </article>
 
@@ -66,6 +122,7 @@
     </footer>
 
     <script src="../js/get_catalogo_zonas.js"></script>
+    <script src="../js/menu_desplegable.js"></script>
 
 </body>
 </html>

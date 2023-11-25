@@ -12,12 +12,14 @@ body {
 /* Aplicando Flexbox para alinear los elementos en el eje principal */
 header, nav, article, footer {
   display: flex;
+  
   flex-direction: column;
 }
 
 /* Header Styles */
 header {
   font-family: Arial;
+  
   /* background-color: #f0f0f0; Color de fondo del encabezado, ajusta según tus preferencias */
   padding: px; /* Espaciado interno del encabezado */
   text-align: center; /* Centra el contenido del encabezado */
