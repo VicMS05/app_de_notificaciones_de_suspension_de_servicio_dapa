@@ -1,12 +1,8 @@
-//Metodo get para la lista desplegable
-// URL del endpoint de la API Django, asumiendo que está en el mismo servidor
-const apiUrl = 'http://localhost:8000/api/zonas/';
-
 // Obtener la referencia al elemento de lista desplegable en el DOM
 const listaDesplegable = document.getElementById('listadesplegable');
 
 // Realizar la solicitud GET con Fetch
-fetch(apiUrl) // Devuelve una promesa
+fetch('http://localhost:8000/api/zonas/') // Devuelve una promesa
   .then(response => { // Devuelve otra promesa
     // Verificar si la respuesta es exitosa (código 200)
     if (!response.ok) { // ok devuelve true si el código de estado HTTP está en el rango 200-299

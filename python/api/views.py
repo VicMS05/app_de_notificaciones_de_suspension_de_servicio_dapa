@@ -1,187 +1,228 @@
-from typing import Any
-from django import http
+import json
 from django.views import View
-from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-import json
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Administrador, Catalogozonas, Cliente, Reportefallas
 
 # Create your views here.
 
 
 class AdministradorView(View):
+    """"Esta clase es una vista para el modelo o entidad 
+    Administrador donde se establecen los métodos HTTP (GET, POST, PUT, DELETE)"""
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        # Se desactiva el CSRF para poder hacer peticiones desde el cliente
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0):
-        if (id > 0):  # Si se envia un id, se obtiene un registro en especifico
+    def get(self, request, correo=""):
+        """Metodo GET para realizar consultas de la tabla Administrador"""
+        if correo != "":  # Si se envia un correo, se obtiene un registro en especifico
+            # select * from administrador where correoadmin = correo
             administradores = list(
-                Administrador.objects.filter(idadmin=id).values())
-            if len(administradores) > 0:
+                Administrador.objects.filter(correoadmin=correo).values())
+            if len(administradores) > 0:  # Si existe el registro
                 administrador = administradores[0]
                 datitos = {'message': "Operacion exitosa",
-                           'administrador': administrador}
-            else:
+                            'administrador': administrador}
+            else:  # Si no existe el registro
                 datitos = {
                     'message': "No existe el administrador o la administradora"}
-        else:  # Si no se envia un id, se obtienen todos los registros
+        else:  # Si no se envia un correo, se obtienen todos los registros
+            # select * from administrador
             administradores = list(Administrador.objects.values())
-            if len(administradores) > 0:
+            if len(administradores) > 0:  # Si existe el registro
                 datitos = {'message': "Operacion exitosa",
-                           'administradores': administradores}
-            else:
+                            'administradores': administradores}
+            else:  # Si no existe el registro
                 datitos = {'message': "No hay administradores"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def post(self, request):
+        """Método POST para insertar un registro en la tabla Administrador"""
         # Se obtiene el JSON enviado por el cliente
         jd = json.loads(request.body)
-        administrador = Administrador.objects.create(  # Se crea un nuevo registro en la tabla Administrador
+        # insert into administrador values (nombreadmin, appatadmin, apmatadmin, contraadmin, correoadmin)
+        Administrador.objects.create(
             nombreadmin=jd['nombreadmin'],  # Se obtienen los valores del JSON
             appatadmin=jd['appatadmin'],  # Se obtienen los valores del JSON
             apmatadmin=jd['apmatadmin'],  # Se obtienen los valores del JSON
             contraadmin=jd['contraadmin'],  # Se obtienen los valores del JSON
             correoadmin=jd['correoadmin'],  # Se obtienen los valores del JSON
         )
-        administrador.set_contraadmin_password(administrador.contracliente)
-        administrador.save()
+        # Se envia un mensaje de exito
         datitos = {'message': "Operación exitosa"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
-    def put(self, request, id):
-        # Se obtiene el JSON enviado por el cliente
-        jd = json.loads(request.body)
-        administradores = list(Administrador.objects.filter(
-            idadmin=id).values())  # Se obtiene el registro a modificar
-        if len(administradores) > 0:  # Si existe el registro
+    def put(self, request, correo):
+        """"Método PUT para modificar un registro en la tabla Administrador"""
+        try:
+            # Se obtiene el JSON enviado por el cliente
+            jd = json.loads(request.body)
+            # Se obtiene el registro a modificar
             administrador = Administrador.objects.get(
-                idadmin=id)  # Se obtiene el registro a modificar
-            # Se obtienen los valores del JSON
+                correoadmin=correo)
+            # Se asignan los nuevos valores
             administrador.nombreadmin = jd['nombreadmin']
-            # Se obtienen los valores del JSON
             administrador.appatadmin = jd['appatadmin']
-            # Se obtienen los valores del JSON
             administrador.apmatadmin = jd['apmatadmin']
-            # Se obtienen los valores del JSON
             administrador.contraadmin = jd['contraadmin']
-            # Se obtienen los valores del JSON
             administrador.correoadmin = jd['correoadmin']
-            administrador.save()  # Se guardan los cambios
+            # Se guardan los cambios
+            # update administrador set nombreadmin = nombreadmin, appatadmin = appatadmin, apmatadmin = apmatadmin, contraadmin = contraadmin, correoadmin = correoadmin where correoadmin = correo
+            administrador.save()
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:
-            # Si no existe el registro
-            datitos = {
-                'message': "No existe el administrador o la administradora"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
+            datitos = {'message': "No existe el administrador o la administradora"}
+        # Se envia la respuesta al cliente
+        return JsonResponse(datitos)
 
-    def delete(self, request, id):
-        administradores = list(Administrador.objects.filter(
-            idadmin=id).values())  # Se obtiene el registro a eliminar
-        if len(administradores) > 0:  # Si existe el registro
-            Administrador.objects.filter(
-                idadmin=id).delete()  # Se elimina el registro
+    def delete(self, request, correo):
+        """Método DELETE para eliminar un registro en la tabla Administrador"""
+        try:
+            # Se obtiene el registro a eliminar
+            administrador = Administrador.objects.get(correoadmin=correo)
+            # Se elimina el registro
+            # delete from administrador where correoadmin = correo
+            administrador.delete()
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:  # Si no existe el registro
-            # Se envia un mensaje de error
-            datitos = {
-                'message': "No existe el administrador o la administradora"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
+            datitos = {'message': "No existe el administrador o la administradora"}
+        # Se envia la respuesta al cliente
+        return JsonResponse(datitos)
 
 
 class CatalogozonasView(View):
+    """Esta clase es una vista para el modelo o entidad Catalogozonas donde se establecen los métodos HTTP (GET, POST, PUT, DELETE)"""
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        # Se desactiva el CSRF para poder hacer peticiones desde el cliente
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id=0):
-        if (id > 0):  # Si se envia un id, se obtiene un registro en especifico
+        """Metodo GET para realizar consultas de la tabla Catalogozonas"""
+        if id > 0:  # Si se envia un id, se obtiene un registro en especifico
+            # select * from catalogozonas where idzona = id
             zonas = list(Catalogozonas.objects.filter(idzona=id).values())
-            if len(zonas) > 0:
+            if len(zonas) > 0: # Si existe el registro
                 zona = zonas[0]
                 datitos = {'message': "Operacion exitosa", 'zona': zona}
-            else:
+            else: # Si no existe el registro
                 datitos = {'message': "No existe la zona"}
         else:  # Si no se envia un id, se obtienen todos los registros
+            # select * from catalogozonas
             zonas = list(Catalogozonas.objects.values())
-            if len(zonas) > 0:
+            if len(zonas) > 0: # Si existe el registro
                 datitos = {'message': "Operacion exitosa", 'zonas': zonas}
-            else:
+            else: # Si no existe el registro
                 datitos = {'message': "No hay zonas"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def post(self, request):
+        """Método POST para insertar un registro en la tabla Catalogozonas"""
+        # Se obtiene el JSON enviado por el cliente
         jd = json.loads(request.body)
+        # insert into catalogozonas values (colonia, codigopostal)
         Catalogozonas.objects.create(
-            colonia=jd['colonia'],
-            codigopostal=jd['codigopostal'],
+            colonia=jd['colonia'], # Se obtienen los valores del JSON
+            codigopostal=jd['codigopostal'], # Se obtienen los valores del JSON
         )
+        # Se envia un mensaje de exito
         datitos = {'message': "Operación exitosa"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def put(self, request, id):
-        # Se obtiene el JSON enviado por el cliente
-        jd = json.loads(request.body)
-        # Se obtiene el registro a modificar
-        zonas = list(Catalogozonas.objects.filter(idzona=id).values())
-        if len(zonas) > 0:  # Si existe el registro
+        """"Método PUT para modificar un registro en la tabla Catalogozonas"""
+        try:
+            # Se obtiene el JSON enviado por el cliente
+            jd = json.loads(request.body)
             # Se obtiene el registro a modificar
-            zonas = Catalogozonas.objects.get(idzona=id)
-            zonas.colonia = jd['colonia']  # Se obtienen los valores del JSON
-            # Se obtienen los valores del JSON
-            zonas.codigopostal = jd['codigopostal']
+            zona = Catalogozonas.objects.get(idzona=id)
+            # Se asignan los nuevos valores
+            zona.colonia = jd['colonia']
+            zona.codigopostal = jd['codigopostal']
+            # Se guardan los cambios
+            # update catalogozonas set colonia = colonia, codigopostal = codigopostal where idzona = id
+            zona.save()
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:
-            # Si no existe el registro
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
             datitos = {'message': "No existe la zona"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Se envia la respuesta al cliente en formato JSON
+        return JsonResponse(datitos)
 
     def delete(self, request, id):
-        # Se obtiene el registro a eliminar
-        zonas = list(Catalogozonas.objects.filter(idzona=id).values())
-        if len(zonas) > 0:  # Si existe el registro
-            Catalogozonas.objects.filter(
-                idzona=id).delete()  # Se elimina el registro
+        """Método DELETE para eliminar un registro en la tabla Catalogozonas"""
+        try:
+            # Se obtiene el registro a eliminar
+            zona = Catalogozonas.objects.filter(idzona=id).values()
+            # Se elimina el registro
+            # delete from catalogozonas where idzona = id
+            zona.delete()
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:  # Si no existe el registro
-            # Se envia un mensaje de error
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
             datitos = {'message': "No existe la zona"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Se envia la respuesta al cliente en formato JSON
+        return JsonResponse(datitos)
 
 
 class ClienteView(View):
+    """Esta clase es una vista para el modelo o entidad Cliente donde se establecen los métodos HTTP (GET, POST, PUT, DELETE)"""
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        # Se desactiva el CSRF para poder hacer peticiones desde el cliente
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0):
-        if (id > 0):  # Si se envia un id, se obtiene un registro en especifico
+    def get(self, request, id=0, correo=""):
+        """Metodo GET para realizar consultas de la tabla Cliente"""
+        print('id: ' + str(id))
+        print('correo: ' + correo)
+        if id > 0:  # Si se envia un id, se obtiene un registro en especifico
+            # select * from cliente where idcliente = id
             clientes = list(Cliente.objects.filter(idcliente=id).values())
-            if len(clientes) > 0:
+            if len(clientes) > 0: # Si existe el registro
                 cliente = clientes[0]
                 datitos = {'message': "Operacion exitosa", 'cliente': cliente}
-            else:
+            else: # Si no existe el registro
                 datitos = {'message': "No existe el cliente"}
-        else:  # Si no se envia un id, se obtienen todos los registros
+        elif correo != "":  # Si se envia un correo, se obtiene un registro en especifico
+            # select * from cliente where correocliente = correo
+            clientes = list(Cliente.objects.filter(correocliente=correo).values())
+            if len(clientes) > 0: # Si existe el registro
+                cliente = clientes[0]
+                datitos = {'message': "Operacion exitosa", 'cliente': cliente}
+        else:  # Si no se envia un id ni un correo, se obtienen todos los registros
             clientes = list(Cliente.objects.values())
-            if len(clientes) > 0:
+            if len(clientes) > 0: # Si existe el registro
                 datitos = {'message': "Operacion exitosa",
-                           'clientes': clientes}
-            else:
+                            'clientes': clientes}
+            else: # Si no existe el registro
                 datitos = {'message': "No hay clientes"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def post(self, request):
+        """Método POST para insertar un registro en la tabla Cliente"""
+        # Se obtiene el JSON enviado por el cliente
         jd = json.loads(request.body)
-        cliente = Cliente.objects.create(
+        # insert into cliente values (nombrecliente, appatcliente, apmatcliente, contracliente, correocliente, callecliente, colcliente, numextcliente, cpcliente)
+        Cliente.objects.create(
             idcliente=jd['idcliente'],
             nombrecliente=jd['nombrecliente'],
             appatcliente=jd['appatcliente'],
@@ -193,125 +234,129 @@ class ClienteView(View):
             numextcliente=jd['numextcliente'],
             cpcliente=jd['cpcliente'],
         )
-        cliente.set_contracliente_password(cliente.contracliente)
-        cliente.save()
+        # Se envia un mensaje de exito
         datitos = {'message': "Operación exitosa"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def put(self, request, id):
-        # Se obtiene el JSON enviado por el cliente
-        jd = json.loads(request.body)
-        # Se obtiene el registro a modificar
-        clientes = list(Cliente.objects.filter(idcliente=id).values())
-        if len(clientes) > 0:  # Si existe el registro
+        """"Método PUT para modificar un registro en la tabla Cliente"""
+        try:
+            # Se obtiene el JSON enviado por el cliente
+            jd = json.loads(request.body)
             # Se obtiene el registro a modificar
-            clientes = Cliente.objects.get(idcliente=id)
-            # Se obtienen los valores del JSON
-            clientes.nombrecliente = jd['nombrecliente']
-            # Se obtienen los valores del JSON
-            clientes.appatcliente = jd['appatcliente']
-            # Se obtienen los valores del JSON
-            clientes.apmatcliente = jd['apmatcliente']
-            # Se obtienen los valores del JSON
-            clientes.contracliente = jd['contracliente']
-            # Se obtienen los valores del JSON
-            clientes.correocliente = jd['correocliente']
-            # Se obtienen los valores del JSON
-            clientes.callecliente = jd['callecliente']
-            # Se obtienen los valores del JSON
-            clientes.colcliente = jd['colcliente']
-            # Se obtienen los valores del JSON
-            clientes.numextcliente = jd['numextcliente']
-            # Se obtienen los valores del JSON
-            clientes.cpcliente = jd['cpcliente']
+            cliente = Cliente.objects.get(idcliente=id)
+            # Se asignan los nuevos valores
+            cliente.nombrecliente = jd['nombrecliente']
+            cliente.appatcliente = jd['appatcliente']
+            cliente.apmatcliente = jd['apmatcliente']
+            cliente.contracliente = jd['contracliente']
+            cliente.correocliente = jd['correocliente']
+            cliente.callecliente = jd['callecliente']
+            cliente.colcliente = jd['colcliente']
+            cliente.numextcliente = jd['numextcliente']
+            cliente.cpcliente = jd['cpcliente']
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:
-            # Si no existe el registro
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
             datitos = {'message': "No existe el o la cliente"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Se envia la respuesta al cliente en formato JSON
+        return JsonResponse(datitos)
 
     def delete(self, request, id):
-        # Se obtiene el registro a eliminar
-        clientes = list(Cliente.objects.filter(idcliente=id).values())
-        if len(clientes) > 0:  # Si existe el registro
+        """Método DELETE para eliminar un registro en la tabla Cliente"""
+        try:
+            # Se obtiene el registro a eliminar
+            cliente = Cliente.objects.filter(idcliente=id).values()
             # Se elimina el registro
-            Cliente.objects.filter(idcliente=id).delete()
+            # delete from cliente where idcliente = id
+            cliente.delete()
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:  # Si no existe el registro
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
             # Se envia un mensaje de error
             datitos = {'message': "No existe el o la cliente"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
-
+        # Se envia la respuesta al cliente en formato JSON
+        return JsonResponse(datitos)
 
 class ReportefallasView(View):
+    """Esta clase es una vista para el modelo o entidad Reportefallas donde se establecen los métodos HTTP (GET, POST, PUT, DELETE)"""
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        # Se desactiva el CSRF para poder hacer peticiones desde el cliente
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id=0):
-        if (id > 0):  # Si se envia un id, se obtiene un registro en especifico
+        """Metodo GET para realizar consultas de la tabla Reportefallas"""
+        if id > 0:  # Si se envia un id, se obtiene un registro en especifico
             reportes = list(Reportefallas.objects.filter(
                 idfalla=id).values())
-            if len(reportes) > 0:
+            if len(reportes) > 0: # Si existe el registro
                 reporte = reportes[0]
                 datitos = {'message': "Operacion exitosa", 'reporte': reporte}
-            else:
+            else: # Si no existe el registro
                 datitos = {'message': "No existe el reporte"}
         else:  # Si no se envia un id, se obtienen todos los registros
             reportes = list(Reportefallas.objects.values())
-            if len(reportes) > 0:
+            if len(reportes) > 0: # Si existe el registro
                 datitos = {'message': "Operacion exitosa",
-                           'reportes': reportes}
-            else:
+                            'reportes': reportes}
+            else: # Si no existe el registro
                 datitos = {'message': "No hay reportes"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def post(self, request):
+        """Método POST para insertar un registro en la tabla Reportefallas"""
+        # Se obtiene el JSON enviado por el cliente
         jd = json.loads(request.body)
+        # insert into reportefallas values (motivorep, fecharep, estatusrep, clavecliente)
         Reportefallas.objects.create(
-            motivorep=jd['motivorep'], # Se obtienen los valores del JSON
-            fecharep=jd['fecharep'], # Se obtienen los valores del JSON
-            estatusrep=jd['estatusrep'], # Se obtienen los valores del JSON
-            clavecliente=jd['clavecliente'] # Se obtienen los valores del JSON
+            motivorep=jd['motivorep'],  # Se obtienen los valores del JSON
+            fecharep=jd['fecharep'],  # Se obtienen los valores del JSON
+            estatusrep=jd['estatusrep'],  # Se obtienen los valores del JSON
+            clavecliente=jd['clavecliente']  # Se obtienen los valores del JSON
         )
+        # Se envia un mensaje de exito
         datitos = {'message': "Operación exitosa"}
+        # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
     def put(self, request, id):
-        # Se obtiene el JSON enviado por el cliente
-        jd = json.loads(request.body)
-        # Se obtiene el registro a modificar
-        reportes = list(Reportefallas.objects.filter(idfalla=id).values())
-        if len(reportes) > 0:  # Si existe el registro
+        """"Método PUT para modificar un registro en la tabla Reportefallas"""
+            # Se obtiene el JSON enviado por el cliente
+        try:
+            jd = json.loads(request.body)
             # Se obtiene el registro a modificar
-            reportes = Reportefallas.objects.get(idfalla=id)
-            # Se obtienen los valores del JSON
-            reportes.motivorep = jd['motivorep']
-            # Se obtienen los valores del JSON
-            reportes.fecharep = jd['fecharep']
-            # Se obtienen los valores del JSON
-            reportes.estatusrep = jd['estatusrep']
-            # Se obtienen los valores del JSON
-            reportes.clavecliente = jd['clavecliente']
+            reporte = Reportefallas.objects.get(idfalla=id)
+            # Se asignan los nuevos valores
+            reporte.motivorep = jd['motivorep']
+            reporte.fecharep = jd['fecharep']
+            reporte.estatusrep = jd['estatusrep']
+            reporte.clavecliente = jd['clavecliente']
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:
-            # Si no existe el registro
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
             datitos = {'message': "No existe el reporte"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Se envia la respuesta al cliente en formato JSON
+        return JsonResponse(datitos)
 
     def delete(self, request, id):
-        # Se obtiene el registro a eliminar
-        reportes = list(Reportefallas.objects.filter(idfalla=id).values())
-        if len(reportes) > 0:  # Si existe el registro
-            Reportefallas.objects.filter(
-                idfalla=id).delete()  # Se elimina el registro
+        """Método DELETE para eliminar un registro en la tabla Reportefallas"""
+        try:
+            # Se obtiene el registro a eliminar
+            reporte = Reportefallas.objects.filter(idfalla=id).values()
+            # Se elimina el registro
+            # delete from reportefallas where idfalla = id
+            reporte.delete()
             # Se envia un mensaje de exito
             datitos = {'message': "Operación exitosa"}
-        else:  # Si no existe el registro
-            # Se envia un mensaje de error
+        # Excepción por si no existe el registro
+        except ObjectDoesNotExist:
             datitos = {'message': "No existe el reporte"}
-        return JsonResponse(datitos)  # Se envia la respuesta al cliente
+        # Se envia la respuesta al cliente en formato JSON
+        return JsonResponse(datitos)
