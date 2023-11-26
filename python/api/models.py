@@ -16,8 +16,9 @@ class Administrador(models.Model):
     # Field name made lowercase.
     correoadmin = models.CharField(db_column='correoAdmin', max_length=35)
 
-    def set_contraadmin_password(self, raw_password):
-        self.contraadmin = make_password(raw_password)
+    # Para encriptar la contraseña con bcrypt
+    # def set_contraadmin_password(self, raw_password):
+    #     self.contraadmin = make_password(raw_password)
 
     objects = models.Manager()
 
@@ -132,8 +133,9 @@ class Cliente(models.Model):
     # Field name made lowercase.
     cpcliente = models.IntegerField(db_column='cpCliente')
 
-    def set_contracliente_password(self, raw_password):
-        self.contracliente = make_password(raw_password)
+    # Para encriptar la contraseña con bcrypt
+    # def set_contracliente_password(self, raw_password):
+    #     self.contracliente = make_password(raw_password)
 
     objects = models.Manager()
 

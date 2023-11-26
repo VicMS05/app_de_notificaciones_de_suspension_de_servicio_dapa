@@ -137,8 +137,13 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",  # se permite el acceso a la API desde este origen
 ]
 
-PASSWORD_HASHERS = [ # se agregan los algoritmos de encriptación de contraseñas
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher', # algoritmo de encriptación de contraseñas
-    'django.contrib.auth.hashers.Argon2PasswordHasher', # algoritmo de encriptación de contraseñas
-    # ...
-]
+# PASSWORD_HASHERS = [ # se agregan los algoritmos de encriptación de contraseñas
+#     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher', # algoritmo de encriptación de contraseñas
+#     'django.contrib.auth.hashers.Argon2PasswordHasher', # algoritmo de encriptación de contraseñas
+#     # ...
+# ]
+
+# AUTHENTICATION_BACKENDS = [
+#     'drf.backends.ClienteBackend',
+#     'drf.backends.AdministradorBackend',
+# ]
