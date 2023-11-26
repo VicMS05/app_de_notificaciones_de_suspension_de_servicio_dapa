@@ -5,7 +5,8 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/styles_rf.css">
-    <link rel="stylesheet" href="../css/styles_login.css">
+    <link rel="stylesheet" href="../css/styles_az.css">
+    <!-- <link rel="stylesheet" href="../css/styles_login.css"> -->
     <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
 
     <title>DAPA</title>
@@ -16,29 +17,33 @@
     <header>
         <img src="\img\headerdapa.jpg" alt="header Dapa" class="header">
         <div class="header-buttons">
+            <a href="../index.html"><button style="position: absolute; top: 60px; right: 20px;">Cerrar sesión</button></a>
 </div>
 </header>
-
+<article>
     <!-- Main Content -->
-   
-   
-            <div class="container" id="container" style="background-color: #add8e6">
+    <br>
+   <div class="container" id="container" style="background-color: #add8e6">
                 
             <!-- <div class="form-container sign-up">  -->
-   
-        <h1>Reporte de Fallas</h1>
+
+        <h2>Reporte de Fallas</h2>
+        <br>
         <div class = "inputs">
-        <input text="text" placeholder="Código Postal">
-<input type="text" placeholder="Sector">
-<input type="text" placeholder="Número de Contrato">
-<input type="text" placeholder="Motivo de Reporte">
-<input type="date" placeholder="Fecha de Reporte">
-<button>Reportar</button>
+        <input text="text" class="containerinput" placeholder="Código Postal">
+<input type="text" class="containerinput" placeholder="Sector">
+<input type="text" class="containerinput" placeholder="Número de Contrato">
+<input type="text"  class="containerinput" placeholder="Motivo de Reporte">
+<input type="date"  class="containerinput" placeholder="Fecha de Reporte">
+<br><br>
+<button style="background-color: #2d81c5; font-size: large;">Reportar</button>
 </form>
 </div>
 </div>
+<br><br>
 <section class="report-section">
     <h2>Historial del reporte de fallas </h2>
+    <br>
     <table>
         <thead>
             <!-- <h6>Por favor eliga el estatus que desea editar: </h6> -->
@@ -53,7 +58,7 @@
         <tbody>
             </table>
 </section>
-
+</article>
 
     <!-- Footer -->
     <footer>
