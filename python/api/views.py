@@ -27,7 +27,7 @@ class AdministradorView(View):
             if len(administradores) > 0:  # Si existe el registro
                 administrador = administradores[0]
                 datitos = {'message': "Operacion exitosa",
-                            'administrador': administrador}
+                           'administrador': administrador}
             else:  # Si no existe el registro
                 datitos = {
                     'message': "No existe el administrador o la administradora"}
@@ -36,7 +36,7 @@ class AdministradorView(View):
             administradores = list(Administrador.objects.values())
             if len(administradores) > 0:  # Si existe el registro
                 datitos = {'message': "Operacion exitosa",
-                            'administradores': administradores}
+                           'administradores': administradores}
             else:  # Si no existe el registro
                 datitos = {'message': "No hay administradores"}
         # Se envia la respuesta al cliente en formato JSON
@@ -80,7 +80,8 @@ class AdministradorView(View):
             datitos = {'message': "Operación exitosa"}
         # Excepción por si no existe el registro
         except ObjectDoesNotExist:
-            datitos = {'message': "No existe el administrador o la administradora"}
+            datitos = {
+                'message': "No existe el administrador o la administradora"}
         # Se envia la respuesta al cliente
         return JsonResponse(datitos)
 
@@ -96,7 +97,8 @@ class AdministradorView(View):
             datitos = {'message': "Operación exitosa"}
         # Excepción por si no existe el registro
         except ObjectDoesNotExist:
-            datitos = {'message': "No existe el administrador o la administradora"}
+            datitos = {
+                'message': "No existe el administrador o la administradora"}
         # Se envia la respuesta al cliente
         return JsonResponse(datitos)
 
@@ -114,17 +116,17 @@ class CatalogozonasView(View):
         if id > 0:  # Si se envia un id, se obtiene un registro en especifico
             # select * from catalogozonas where idzona = id
             zonas = list(Catalogozonas.objects.filter(idzona=id).values())
-            if len(zonas) > 0: # Si existe el registro
+            if len(zonas) > 0:  # Si existe el registro
                 zona = zonas[0]
                 datitos = {'message': "Operacion exitosa", 'zona': zona}
-            else: # Si no existe el registro
+            else:  # Si no existe el registro
                 datitos = {'message': "No existe la zona"}
         else:  # Si no se envia un id, se obtienen todos los registros
             # select * from catalogozonas
             zonas = list(Catalogozonas.objects.values())
-            if len(zonas) > 0: # Si existe el registro
+            if len(zonas) > 0:  # Si existe el registro
                 datitos = {'message': "Operacion exitosa", 'zonas': zonas}
-            else: # Si no existe el registro
+            else:  # Si no existe el registro
                 datitos = {'message': "No hay zonas"}
         # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
@@ -135,8 +137,9 @@ class CatalogozonasView(View):
         jd = json.loads(request.body)
         # insert into catalogozonas values (colonia, codigopostal)
         Catalogozonas.objects.create(
-            colonia=jd['colonia'], # Se obtienen los valores del JSON
-            codigopostal=jd['codigopostal'], # Se obtienen los valores del JSON
+            colonia=jd['colonia'],  # Se obtienen los valores del JSON
+            # Se obtienen los valores del JSON
+            codigopostal=jd['codigopostal'],
         )
         # Se envia un mensaje de exito
         datitos = {'message': "Operación exitosa"}
@@ -196,23 +199,25 @@ class ClienteView(View):
         if id > 0:  # Si se envia un id, se obtiene un registro en especifico
             # select * from cliente where idcliente = id
             clientes = list(Cliente.objects.filter(idcliente=id).values())
-            if len(clientes) > 0: # Si existe el registro
+            if len(clientes) > 0:  # Si existe el registro
                 cliente = clientes[0]
                 datitos = {'message': "Operacion exitosa", 'cliente': cliente}
-            else: # Si no existe el registro
+            else:  # Si no existe el registro
                 datitos = {'message': "No existe el cliente"}
         elif correo != "":  # Si se envia un correo, se obtiene un registro en especifico
             # select * from cliente where correocliente = correo
-            clientes = list(Cliente.objects.filter(correocliente=correo).values())
-            if len(clientes) > 0: # Si existe el registro
+            clientes = list(Cliente.objects.filter(
+                correocliente=correo).values())
+            if len(clientes) > 0:  # Si existe el registro
                 cliente = clientes[0]
                 datitos = {'message': "Operacion exitosa", 'cliente': cliente}
+                print(datitos)
         else:  # Si no se envia un id ni un correo, se obtienen todos los registros
             clientes = list(Cliente.objects.values())
-            if len(clientes) > 0: # Si existe el registro
+            if len(clientes) > 0:  # Si existe el registro
                 datitos = {'message': "Operacion exitosa",
-                            'clientes': clientes}
-            else: # Si no existe el registro
+                           'clientes': clientes}
+            else:  # Si no existe el registro
                 datitos = {'message': "No hay clientes"}
         # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
@@ -281,6 +286,7 @@ class ClienteView(View):
         # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
 
+
 class ReportefallasView(View):
     """Esta clase es una vista para el modelo o entidad Reportefallas donde se establecen los métodos HTTP (GET, POST, PUT, DELETE)"""
 
@@ -294,17 +300,17 @@ class ReportefallasView(View):
         if id > 0:  # Si se envia un id, se obtiene un registro en especifico
             reportes = list(Reportefallas.objects.filter(
                 idfalla=id).values())
-            if len(reportes) > 0: # Si existe el registro
+            if len(reportes) > 0:  # Si existe el registro
                 reporte = reportes[0]
                 datitos = {'message': "Operacion exitosa", 'reporte': reporte}
-            else: # Si no existe el registro
+            else:  # Si no existe el registro
                 datitos = {'message': "No existe el reporte"}
         else:  # Si no se envia un id, se obtienen todos los registros
             reportes = list(Reportefallas.objects.values())
-            if len(reportes) > 0: # Si existe el registro
+            if len(reportes) > 0:  # Si existe el registro
                 datitos = {'message': "Operacion exitosa",
-                            'reportes': reportes}
-            else: # Si no existe el registro
+                           'reportes': reportes}
+            else:  # Si no existe el registro
                 datitos = {'message': "No hay reportes"}
         # Se envia la respuesta al cliente en formato JSON
         return JsonResponse(datitos)
@@ -327,7 +333,7 @@ class ReportefallasView(View):
 
     def put(self, request, id):
         """"Método PUT para modificar un registro en la tabla Reportefallas"""
-            # Se obtiene el JSON enviado por el cliente
+        # Se obtiene el JSON enviado por el cliente
         try:
             jd = json.loads(request.body)
             # Se obtiene el registro a modificar

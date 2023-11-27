@@ -12,7 +12,7 @@ class Administrador(models.Model):
     # Field name made lowercase.
     apmatadmin = models.CharField(db_column='apMatAdmin', max_length=30)
     # Field name made lowercase.
-    contraadmin = models.CharField(db_column='contraAdmin', max_length=10)
+    contraadmin = models.CharField(db_column='contraAdmin', max_length=126)
     # Field name made lowercase.
     correoadmin = models.CharField(db_column='correoAdmin', max_length=35)
 

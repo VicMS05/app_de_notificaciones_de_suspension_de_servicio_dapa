@@ -19,11 +19,14 @@ async function validarInicioSesionCliente() { // Función para validar el inicio
         url = 'http://localhost:8000/api/cliente_id/' + usuario; // Se establece la url de la API para que ingrese con el numero de contrato
     }
 
-    console.log(url + " | " + usuario)
+    // alert(url + " | " + usuario + " | " + contraseña)
 
     fetch(url)
         .then(response => response.json())
+        alert(data.cliente.nombrecliente)
+        alert("Karen")
         .then(data => {
+            alert("Entre")
             if (data.cliente && data.cliente.nombrecliente != null && data.cliente.contracliente == contraseña) {
                 alert("Bienvenido " + data.cliente.nombrecliente + " " + data.cliente.appatcliente + " " + data.cliente.apmatcliente);
                 window.open('http://localhost:5500/src/panel_cliente.html', "_self")
@@ -31,6 +34,7 @@ async function validarInicioSesionCliente() { // Función para validar el inicio
                 alert("Usuario o contraseña incorrectos");
             }
         })
+        alert("Karla")
         .catch(error => console.error('Error al obtener datos de la API:', error)); // Imprimir en consola
 
 }
