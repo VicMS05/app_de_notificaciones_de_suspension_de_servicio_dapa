@@ -69,7 +69,7 @@
         <input type="text" id="usuario" name="usuario" placeholder="Número de contrato" required>
         <div class="passwordocultar">
           <!-- Input de la contraseña -->
-          <input id="password-input1" class="password-input" type="password" placeholder="Ingresa tu contraseña"
+          <input id="contraseña" class="password-input" type="password" placeholder="Ingresa tu contraseña"
             required>
           <!-- Botón de mostrar/ocultar -->
           <button id="password-button1" class="password-button"
@@ -79,14 +79,14 @@
           </button>
         </div>
         <!-- <a href="#">Forget Your Password?</a> -->
-        <button href="" onclick="validarInicioSesionCliente()">Iniciar Sesión</button>
+        <button href="" onclick="validarInicioSesion('cliente')">Iniciar Sesión</button>
       </form>
     </div>
     <div class="toggle-container">
       <div class="toggle">
 
         <div class="toggle-panel toggle-left">
-          <img src="../img/logodapawhite.png"
+          <img src="img/logodapawhite.png"
             style="width: 74%; height: 18%; position: absolute; top: 70px; left: 40px;" title="Logo DAPA">
           <h1>¡Bienvenido(a) de nuevo!</h1>
           <p>Explore recursos y servicios específicos para usted.</p>
@@ -94,7 +94,7 @@
         </div>
         <div class="toggle-panel toggle-right">
           <h1>¡Bienvenido(a) al portal de reportes DAPA</h1>
-          <img src="../img/logodapawhite.png"
+          <img src="img/logodapawhite.png"
             style="width: 74%; height: 18%; position: absolute; top: 60px; left: 50px;" title="Logo DAPA">
           <p> Regístrese ahora para acceder a servicios personalizados y recursos exclusivos.</p>
           <button class="hidden" id="register">Crear una cuenta</button>
@@ -106,7 +106,7 @@
   <script src="js/ojito_contraseña.js"></script>
   <script src="js/get_lista_zonas.js"></script>
   <script src="js/post.js"></script>
-  <script src="js/get_validar_login_cliente.js"></script>
+  <script src="js/validar_login.js"></script>
 </body>
 
 </html>

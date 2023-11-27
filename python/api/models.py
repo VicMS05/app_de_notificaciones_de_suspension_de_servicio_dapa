@@ -1,26 +1,22 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password
+
+# Create your models here.
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 
 
 class Administrador(models.Model):
-    # Field name made lowercase.
-    idadmin = models.AutoField(db_column='idAdmin', primary_key=True)
-    # Field name made lowercase.
-    nombreadmin = models.CharField(db_column='nombreAdmin', max_length=30)
-    # Field name made lowercase.
-    appatadmin = models.CharField(db_column='apPatAdmin', max_length=30)
-    # Field name made lowercase.
-    apmatadmin = models.CharField(db_column='apMatAdmin', max_length=30)
-    # Field name made lowercase.
-    contraadmin = models.CharField(db_column='contraAdmin', max_length=126)
-    # Field name made lowercase.
-    correoadmin = models.CharField(db_column='correoAdmin', max_length=35)
-
-    # Para encriptar la contraseña con bcrypt
-    # def set_contraadmin_password(self, raw_password):
-    #     self.contraadmin = make_password(raw_password)
-
-    objects = models.Manager()
+    idadmin = models.AutoField(db_column='idAdmin', primary_key=True)  # Field name made lowercase.
+    nombreadmin = models.CharField(db_column='nombreAdmin', max_length=30)  # Field name made lowercase.
+    appatadmin = models.CharField(db_column='apPatAdmin', max_length=30)  # Field name made lowercase.
+    apmatadmin = models.CharField(db_column='apMatAdmin', max_length=30)  # Field name made lowercase.
+    contraadmin = models.CharField(db_column='contraAdmin', max_length=126)  # Field name made lowercase.
+    correoadmin = models.CharField(db_column='correoAdmin', max_length=35)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -97,14 +93,9 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Catalogozonas(models.Model):
-    # Field name made lowercase.
-    idzona = models.AutoField(db_column='idZona', primary_key=True)
-    # Field name made lowercase.
-    colonia = models.CharField(db_column='Colonia', max_length=50)
-    # Field name made lowercase.
-    codigopostal = models.IntegerField(db_column='codigoPostal')
-
-    objects = models.Manager()
+    idzona = models.AutoField(db_column='idZona', primary_key=True)  # Field name made lowercase.
+    colonia = models.CharField(max_length=50)
+    codigopostal = models.IntegerField(db_column='codigoPostal')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -112,32 +103,16 @@ class Catalogozonas(models.Model):
 
 
 class Cliente(models.Model):
-    # Field name made lowercase.
-    idcliente = models.IntegerField(db_column='idCliente', primary_key=True)
-    # Field name made lowercase.
-    nombrecliente = models.CharField(db_column='nombreCliente', max_length=30)
-    # Field name made lowercase.
-    appatcliente = models.CharField(db_column='apPatCliente', max_length=30)
-    # Field name made lowercase.
-    apmatcliente = models.CharField(db_column='apMatCliente', max_length=30)
-    # Field name made lowercase.
-    contracliente = models.CharField(db_column='contraCliente', max_length=126)
-    # Field name made lowercase.
-    correocliente = models.CharField(db_column='correoCliente', max_length=35)
-    # Field name made lowercase.
-    callecliente = models.CharField(db_column='calleCliente', max_length=15)
-    # Field name made lowercase.
-    colcliente = models.CharField(db_column='colCliente', max_length=20)
-    # Field name made lowercase.
-    numextcliente = models.CharField(db_column='numExtCliente', max_length=5)
-    # Field name made lowercase.
-    cpcliente = models.IntegerField(db_column='cpCliente')
-
-    # Para encriptar la contraseña con bcrypt
-    # def set_contracliente_password(self, raw_password):
-    #     self.contracliente = make_password(raw_password)
-
-    objects = models.Manager()
+    idcliente = models.IntegerField(db_column='idCliente', primary_key=True)  # Field name made lowercase.
+    nombrecliente = models.CharField(db_column='nombreCliente', max_length=30)  # Field name made lowercase.
+    appatcliente = models.CharField(db_column='apPatCliente', max_length=30)  # Field name made lowercase.
+    apmatcliente = models.CharField(db_column='apMatCliente', max_length=30)  # Field name made lowercase.
+    contracliente = models.CharField(db_column='contraCliente', max_length=126)  # Field name made lowercase.
+    correocliente = models.CharField(db_column='correoCliente', max_length=35)  # Field name made lowercase.
+    callecliente = models.CharField(db_column='calleCliente', max_length=15)  # Field name made lowercase.
+    colcliente = models.CharField(db_column='colCliente', max_length=20)  # Field name made lowercase.
+    numextcliente = models.CharField(db_column='numExtCliente', max_length=5)  # Field name made lowercase.
+    cpcliente = models.IntegerField(db_column='cpCliente')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -150,8 +125,7 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.PositiveSmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey(
-        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
@@ -191,19 +165,11 @@ class DjangoSession(models.Model):
 
 
 class Reportefallas(models.Model):
-    # Field name made lowercase.
-    idfalla = models.AutoField(db_column='idFalla', primary_key=True)
-    # Field name made lowercase.
-    motivorep = models.CharField(db_column='motivoRep', max_length=50)
-    # Field name made lowercase.
-    fecharep = models.DateField(db_column='fechaRep')
-    # Field name made lowercase.
-    estatusrep = models.CharField(db_column='estatusRep', max_length=20)
-    # Field name made lowercase.
-    clavecliente = models.ForeignKey(
-        Cliente, models.DO_NOTHING, db_column='claveCliente')
-
-    objects = models.Manager()
+    idfalla = models.AutoField(db_column='idFalla', primary_key=True)  # Field name made lowercase.
+    motivorep = models.CharField(db_column='motivoRep', max_length=50)  # Field name made lowercase.
+    fecharep = models.DateField(db_column='fechaRep')  # Field name made lowercase.
+    estatusrep = models.CharField(db_column='estatusRep', max_length=20)  # Field name made lowercase.
+    clavecliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='claveCliente')  # Field name made lowercase.
 
     class Meta:
         managed = False

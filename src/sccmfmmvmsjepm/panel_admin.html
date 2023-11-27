@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/styles_menu.css">
-    <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/styles_pa.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="icon" href="../../img/logopestañanofond.png" type="image/png">
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-
-
-    <title>DAPA</title>
+    <title>Inicio</title>
 </head>
+
 <body>
 
     <!-- Header  con botones de Iniciar Sesión y Crear Cuenta-->
@@ -18,18 +18,18 @@
         <header>
             <img src="\img\headerdapa.jpg" alt="header Dapa" class="header">
         </header>
-        </div>
-</header>
+    </div>
     <!-- Main Content -->
+    <div>
         <div class="menu__side" id="responsive-div">
             <div class="name__page">
                 <i class="fa-solid fa-circle-user"></i>
-                <h4>*inserte nombre*</h4>
+                <!-- <h4>*inserte nombre*</h4> -->
             </div>
 
-            <div class="options__menu">	
-                
-                <a href="panel_admin.html">
+            <div class="options__menu">
+
+                <a href="panel_admin.html" class="selected">
                     <div class="option">
                         <i class="fa-solid fa-house" title="Inicio"></i>
                         <h4>Inicio</h4>
@@ -42,69 +42,88 @@
                         <h4>Crear cuenta</h4>
                     </div>
                 </a>
-    
-                <a href="editar_estatus.html" class="selected">
+
+                <a href="editar_estatus.html">
                     <div class="option">
                         <i class="fa-solid fa-pen" title="Editar estatus"></i>
                         <h4>Editar estatus</h4>
                     </div>
                 </a>
-                
+
                 <a href="agregar_zona.html">
                     <div class="option">
                         <i class="fa-solid fa-plus" title="Agregar zona"></i>
                         <h4>Agregar zona</h4>
                     </div>
                 </a>
-    
+
                 <a href="editar_zona.html">
                     <div class="option">
                         <i class="fa-solid fa-pen-to-square" title="Editar zona"></i>
                         <h4>Editar zona</h4>
                     </div>
                 </a>
-    
+
                 <a href="eliminar_zona.html">
                     <div class="option">
                         <i class="fa-solid fa-trash" title="Eliminar zona"></i>
                         <h4>Eliminar zona</h4>
                     </div>
                 </a>
-    
-                <a href="../src/sccmfmmvmsjepm/login_admin.html">
+
+                <a href="login_admin.html">
                     <div class="option">
                         <i class="fa-solid fa-right-from-bracket" title="Cerrar sesion"></i>
                         <h4>Cerrar Sesion</h4>
                     </div>
                 </a>
-    
+
             </div>
         </div>
-        </div>
+    </div>
     <article>
         <div style="position: relative; left: 150px;">
-        <section class="report-section">
-            <h2>Editar estatus del reporte de fallas </h2>
-            <br>
-            <table>
-                <thead>
-                    <!-- <h6>Por favor eliga el estatus que desea editar: </h6> -->
-                    <tr>
-                        <th>Número de seguimiento</th>
-                        <th>Sector</th>
-                        <th>Motivo de reporte</th>
-                        <th>Estatus del reporte</th>
-                        <th>Fecha de reporte</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Aquí se llenarán dinámicamente los datos de la tabla -->
-                </tbody>
-            </table>
-            <br>
-            <a href="panel_admin.html"><button id="btnGuardarCambios">Guardar cambios</button></a>
-        </section>
-    </div>
+            <section class="report-section">
+                <h2>Reporte de fallas</h2>
+                <br>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Número de seguimiento</th>
+                            <th>Sector</th>
+                            <th>Motivo de reporte</th>
+                            <th>Estatus del reporte</th>
+                            <th>Fecha de reporte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se llenarán dinámicamente los datos de la tabla -->
+                    </tbody>
+                </table>
+
+                <!-- <a href="editar_estatus.html"><button id="btnEditarEstatus">Editar estatus</button></a> -->
+            </section>
+
+            <section class="zones-section">
+                <h2>Catálogo de zonas</h2>
+                <br>
+                <table id="catalogoZonas">
+                    <thead>
+                        <tr>
+                            <th>Código postal</th>
+                            <th>Sector</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se llenarán dinámicamente los datos de la tabla -->
+                    </tbody>
+                </table>
+                <!-- <a href="agregar_zona.html"><button id="btnAgregarZona">Agregar zona</button></a>
+            <a href="editar_zona.html"><button id="btnEditarZona">Editar zona</button></a>
+            <a href="eliminar_zona.html"><button id="btnEliminarZona">Eliminar zona</button></a> -->
+            </section>
+        </div>
     </article>
 
     <!-- Footer -->
@@ -112,8 +131,11 @@
         <footer>
             <p>&copy; 2023 Departamento de Asistencia y Problemas de Áreas (DAPA)</p>
         </footer>
-        </div>
+    </div>
+
+    <script src="../../js/get_catalogo_zonas.js"></script>
+    <script src="../../js/menu_desplegable.js"></script>
 
 </body>
-</html>
 
+</html>
