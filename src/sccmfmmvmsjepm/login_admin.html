@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -20,13 +20,13 @@
 
                         <div class="inputbox">
                             <ion-icon name="mail-outline"></ion-icon>
-                            <input type="email" placeholder="." required>
+                            <input id="usuario" type="email" placeholder="." required>
                             <label for="">Correo electrónico</label>
                         </div>
 
                         <div class="inputbox">
                             <ion-icon name="lock-closed-outline"></ion-icon>
-                            <input type="password" placeholder="." required>
+                            <input id="contraseña" type="password" placeholder="." required>
                             <label for="">Contraseña</label>
                         </div>
 
@@ -35,7 +35,7 @@
 
                         </div>
                         <br>
-                        <button type="button">Ingresar</button>
+                        <button type="button" onclick="validarInicioSesion('administrador')">Ingresar</button>
                         <!-- <div class="register">
                             <p>No tengo una cuenta <a href="nvaCuentaAdmin.html">Registrarme</a></p>
                             -Aquí agregar el link del registro-
@@ -47,6 +47,7 @@
     </section>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../../js/validar_login.js"></script>
 </body>
 
 </html>

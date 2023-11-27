@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="../css/styles_f.css">
-    <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
+    <link rel="stylesheet" href="../../css/styles_f.css">
+    <link rel="icon" href="../../img/logopestañanofond.png" type="image/png">
 </head>
 
 <body id="registro">
+    <!-- <div w3-include-html="menu_lateral.html"></div> -->
     <section>
         <div class="form-box2">
             <div class="form-value">
                 <form id="form-registro" action="">
                     <h2 id="subtitulo-form">Crear cuenta administrador</h2>
                     <!-- <h2> administrador</h2> -->
-                    <div >
+                    <div>
                         <div class="inputbox1">
                             <ion-icon name="help-outline"></ion-icon>
                             <input id="nombre" type="nombre" title="Ingrese su nombre" autocomplete="off" required>
@@ -25,26 +26,30 @@
 
                         <div class="inputbox1">
                             <ion-icon name="help-outline"></ion-icon>
-                            <input id="apellidoP" type="apPat" title="Ingrese su apellido paterno" autocomplete="off" required>
+                            <input id="apellidoP" type="apPat" title="Ingrese su apellido paterno" autocomplete="off"
+                                required>
                             <label for="">Apellido paterno</label>
                         </div>
 
                         <div class="inputbox1">
                             <ion-icon name="help-outline"></ion-icon>
-                            <input id="apellidoM" type="apMat" title="Ingrese su apellido materno" autocomplete="off" required>
+                            <input id="apellidoM" type="apMat" title="Ingrese su apellido materno" autocomplete="off"
+                                required>
                             <label for="">Apellido materno</label>
                         </div>
 
                         <div class="inputbox1">
                             <ion-icon name="mail-outline"></ion-icon>
-                            <input id="email" type="email" title="Ingrese su correo electrónico" autocomplete="off" required>
+                            <input id="email" type="email" title="Ingrese su correo electrónico" autocomplete="off"
+                                required>
                             <label for="">Correo electrónico</label>
                         </div>
-
+                        
                         <div class="inputbox1">
                             <ion-icon name="lock-closed-outline"></ion-icon>
-                            <input id="password-input" type="password" title="Ingrese su contraseña" autocomplete="off" required>
-                            <label for="">Contraseña</label>
+                            <input id="password-input" type="password" title="Ingrese su contraseña" autocomplete="off"
+                                required>
+                                <label for="">Contraseña</label>
                         </div>
 
                         <!-- <div class="inputbox1">
@@ -58,16 +63,18 @@
                         
                     </div>  -->
                     <button type="button" onclick="post('administrador')">Registrarse</button>
-                    <!-- <div class="register">
-                        <p>Ya tengo una cuenta <a href="index.html">Iniciar sesión</a></p> -Aquí agregar el link del registro-
-                    </div> -->
+                    <div class="register">
+                        <p><a href="panel_admin.html">Volver al inicio</a></p>
+                    </div>
                 </form>
             </div>
         </div>
     </section>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../js/post.js"></script>
+    <script src="../../js/post.js"></script>
+    <script src="../../js/incluir_html.js"></script>
+    <script>includeHTML()</script>
 </body>
 
 </html>

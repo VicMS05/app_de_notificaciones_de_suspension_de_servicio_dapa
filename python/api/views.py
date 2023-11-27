@@ -135,6 +135,7 @@ class CatalogozonasView(View):
         """Método POST para insertar un registro en la tabla Catalogozonas"""
         # Se obtiene el JSON enviado por el cliente
         jd = json.loads(request.body)
+        print(jd)
         # insert into catalogozonas values (colonia, codigopostal)
         Catalogozonas.objects.create(
             colonia=jd['colonia'],  # Se obtienen los valores del JSON
@@ -192,19 +193,11 @@ class ClienteView(View):
         # Se desactiva el CSRF para poder hacer peticiones desde el cliente
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0, correo=""):
+    def get(self, request, correo=""):
         """Metodo GET para realizar consultas de la tabla Cliente"""
-        print('id: ' + str(id))
+        # print('id: ' + str(id))
         print('correo: ' + correo)
-        if id > 0:  # Si se envia un id, se obtiene un registro en especifico
-            # select * from cliente where idcliente = id
-            clientes = list(Cliente.objects.filter(idcliente=id).values())
-            if len(clientes) > 0:  # Si existe el registro
-                cliente = clientes[0]
-                datitos = {'message': "Operacion exitosa", 'cliente': cliente}
-            else:  # Si no existe el registro
-                datitos = {'message': "No existe el cliente"}
-        elif correo != "":  # Si se envia un correo, se obtiene un registro en especifico
+        if correo != "":  # Si se envia un correo, se obtiene un registro en especifico
             # select * from cliente where correocliente = correo
             clientes = list(Cliente.objects.filter(
                 correocliente=correo).values())

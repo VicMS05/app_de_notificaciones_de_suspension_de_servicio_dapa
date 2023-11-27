@@ -20,12 +20,11 @@ async function post(entidad) { // Función para enviar los datos del formulario 
                 correoadmin: document.getElementById("email").value, // document.getElementById("email") es un objeto de tipo input
             }
             url = 'http://localhost:8000/api/administradores/'; // Se establece la url de la API para insertar un nuevo administrador
-            alert(entidad)
             break;
-        case 'zona': //Pendiente
+        case 'zona':
             datitos = { // Creo un objeto con los datos del formulario (JSON)
-                colonia: document.getElementById("colonia").value.toUpperCase(), // document.getElementById("colonia") es un objeto de tipo input
-                codigopostal: document.getElementById("codigopostal").value, // document.getElementById("codigopostal") es un objeto de tipo input
+                colonia: document.getElementById("sector").value.toUpperCase(), // document.getElementById("colonia") es un objeto de tipo input
+                codigopostal: document.getElementById("cp").value, // document.getElementById("codigopostal") es un objeto de tipo input
             }
             url = 'http://localhost:8000/api/zonas/'; // Se establece la url de la API para insertar una nueva zona
             break;
@@ -55,7 +54,6 @@ async function post(entidad) { // Función para enviar los datos del formulario 
             break;
     }
 
-
     fetch(url, {
         method: 'POST',
         headers: {
@@ -63,10 +61,10 @@ async function post(entidad) { // Función para enviar los datos del formulario 
         },
         body: JSON.stringify(datitos)
     }) // Hago una petición POST al servidor
+        alert("Se ha registrado correctamente")
         .then(response => response.json()) // Devuelve otra promesa
         .then(data => { // Devuelve otra promesa
             // Manejar la respuesta de la API
-            alert("Se ha registrado correctamente");
         })
         .catch(error => { // Devuelve otra promesa
             console.error('Error al enviar los datos:', error); // Imprimir en consola
