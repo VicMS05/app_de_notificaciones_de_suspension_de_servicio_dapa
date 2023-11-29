@@ -17,6 +17,7 @@ function validarInicioSesion(entidad) { // Función para validar el inicio de se
     }
 
     console.log(JSON.stringify(datitos));
+    console.log(url);
 
     fetch(url, {
         method: 'POST',
@@ -30,8 +31,8 @@ function validarInicioSesion(entidad) { // Función para validar el inicio de se
             switch (entidad) {
                 case 'cliente':
                     if (data.mensaje == "Validación exitosa") { // Si la validación es correcta
-                        console.log(data);
-                        alert(data.mensaje);
+                        alert("Bienvenido " + data.nombrecliente + " " + data.appatcliente + " " + data.apmatcliente); // Se muestra un mensaje de bienvenida
+                        window.open("src/panel_cliente.html", "_self"); // Se redirecciona a la página del cliente
                     } else {
                         console.log(data);
                         alert(data.mensaje);

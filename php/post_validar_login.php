@@ -27,9 +27,9 @@ function obtenerHashDeLaBaseDeDatos($usuarioIngresado) {
     include_once "conexion_bd.php";
     try {
         // Utilizar una consulta preparada para prevenir inyección SQL
-        $sentencia = $base_de_datos->prepare("SELECT contraCliente FROM cliente WHERE idCliente = :usuarioIngresado OR correoCliente = :usuarioIngresado");
-        $sentencia->bindParam(':usuarioIngresado', $usuarioIngresado);
-        $sentencia->debugDumpParams();
+        $sentencia = $base_de_datos->prepare("SELECT contraCliente FROM cliente WHERE idCliente = '$usuarioIngresado' OR correoCliente = '$usuarioIngresado'");
+        // $sentencia->bindParam(':usuarioIngresado', $usuarioIngresado);
+        // $sentencia->debugDumpParams();
         $sentencia->execute();
         // Verificar si la consulta se realizó correctamente
         if ($sentencia->rowCount() > 0) {
