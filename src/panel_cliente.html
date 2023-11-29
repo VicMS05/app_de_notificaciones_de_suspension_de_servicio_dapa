@@ -1,3 +1,7 @@
+<?php
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +21,7 @@
 
     <!-- Header  con botones de Iniciar Sesión y Crear Cuenta-->
     <header>
-        <img src="\img\headerdapa.jpg" alt="header Dapa" class="header">
+        <img src="../img/headerdapa.jpg" alt="header Dapa" class="header">
         <div class="header-buttons">
             <a href="../index.html"><button style="position: absolute; top: 60px; right: 20px;">Cerrar
                     sesión</button></a>
@@ -34,7 +38,8 @@
             <br>
             <form class="inputs" autocomplete="off">
                 <input id="cp" text="text" class="containerinput" placeholder="Código Postal">
-                <select class="containerinput" id="sector" title="Selecciona tu colonia" required>
+                <select class="containerinput" id="sector" title="Selecciona tu colonia" onchange="llenarLista('panel')"
+                    required>
                     <option disabled selected>Elige el sector</option>
                 </select>
                 <input id="numContrato" type="text" class="containerinput" autocomplete="off"
@@ -47,7 +52,8 @@
                     <option>MEDIDOR ROTO</option>
                     <option>FALTA DE AGUA</option>
                 </select>
-                <input id="fecha" type="date" class="containerinput" autocomplete="off" placeholder="Fecha de Reporte" min="2023-11-27">
+                <input id="fecha" type="date" class="containerinput" autocomplete="off" placeholder="Fecha de Reporte"
+                    min="2023-11-28">
                 <br><br>
                 <button onclick="post('reporte')" style="background-color: #2d81c5; font-size: large;">Reportar</button>
             </form>
@@ -78,7 +84,11 @@
         <p>&copy; 2023 Departamento de Asistencia y Problemas de Áreas (DAPA)</p>
     </footer>
     <script src="../js/post.js"></script>
-    <script src="../js/get_lista_zonas.js"></script>
+    <script src="../js/get_lista_zonas_panel.js"></script>
 </body>
 
 </html>
+
+<?php
+ob_end_flush();
+?>

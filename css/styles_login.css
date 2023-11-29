@@ -233,3 +233,13 @@ body {
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+
+#contenedor5 {
+    display: flex;
+    gap: 5%;
+    width: 100%;
+}
+
+#cp {
+    width: 75%;
+}

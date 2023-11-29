@@ -1,8 +1,6 @@
-// Obtener la referencia al elemento de lista desplegable en el DOM
-const listaDesplegable = document.getElementById('sector');
-
+const listadesplegable = document.getElementById('sector');
 // Realizar la solicitud GET con Fetch
-fetch('http://localhost:8000/api/zonas/') // Devuelve una promesa
+fetch('php/get_zonas.php') // Devuelve una promesa
   .then(response => { // Devuelve otra promesa
     // Verificar si la respuesta es exitosa (código 200)
     if (!response.ok) { // ok devuelve true si el código de estado HTTP está en el rango 200-299
@@ -14,12 +12,13 @@ fetch('http://localhost:8000/api/zonas/') // Devuelve una promesa
   })
   .then(data => { // Devuelve otra promesa
     // Manipular los datos recibidos
-    if (Array.isArray(data.zonas)) {
-      data.zonas.forEach(item => { // Supongamos que los datos son un array
+    console.log('Datos recibidos:', data); // Imprimir en consola
+    if (Array.isArray(data)) {
+      data.forEach(item => { // Supongamos que los datos son un array
         // Crear una opción para cada elemento en los datos y agregarlo a la lista desplegable
         const opcion = document.createElement('option'); // Crear un elemento option
         opcion.textContent = item.colonia; // Ajusta según la estructura de tus datos
-        listaDesplegable.appendChild(opcion); // Agregar la opción a la lista desplegable
+        listadesplegable.appendChild(opcion); // Agregar la opción a la lista desplegable
       });
     } else {
       console.error('La propiedad "zonas" no es un array:', data.zonas);
