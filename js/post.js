@@ -1,14 +1,5 @@
-async function hashearContraseña(contraseña) { // Función para encriptar la contraseña
-    const encoder = new TextEncoder(); // Creo un objeto de tipo TextEncoder
-    const data = encoder.encode(contraseña); // Codifico la contraseña
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data); // Creo un objeto de tipo SHA-256
-    const hashArray = Array.from(new Uint8Array(hashBuffer)); // Creo un objeto de tipo Uint8Array
-    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join(''); // Creo un objeto de tipo Uint8Array
-    return hashHex; // Devuelvo el hash de la contraseña
-}
-
 async function post(entidad) { // Función para enviar los datos del formulario al servidor
-    var datitos, url; // Variables para almacenar los datos del formulario y la url de la API
+    var datitos, url, cp; // Variables para almacenar los datos del formulario y la url de la API
 
     switch (entidad) {
         case 'administrador':
@@ -16,32 +7,38 @@ async function post(entidad) { // Función para enviar los datos del formulario 
                 nombreadmin: document.getElementById("nombre").value.toUpperCase(), // document.getElementById("nombre") es un objeto de tipo input
                 appatadmin: document.getElementById("apellidoP").value.toUpperCase(), // document.getElementById("apellidoP") es un objeto de tipo input
                 apmatadmin: document.getElementById("apellidoM").value.toUpperCase(), // document.getElementById("apellidoM") es un objeto de tipo input
-                contraadmin: await hashearContraseña(document.getElementById("password-input").value), // document.getElementById("password-input") es un objeto de tipo input donde se usa la función para encriptar la contraseña
+                contraadmin: document.getElementById("password-input").value, // document.getElementById("password-input") es un objeto de tipo input donde se usa la función para encriptar la contraseña
                 correoadmin: document.getElementById("email").value, // document.getElementById("email") es un objeto de tipo input
             }
-            url = 'http://localhost:8000/api/administradores/'; // Se establece la url de la API para insertar un nuevo administrador
             break;
         case 'zona':
             datitos = { // Creo un objeto con los datos del formulario (JSON)
                 colonia: document.getElementById("sector").value.toUpperCase(), // document.getElementById("colonia") es un objeto de tipo input
                 codigopostal: document.getElementById("cp").value, // document.getElementById("codigopostal") es un objeto de tipo input
             }
-            url = 'http://localhost:8000/api/zonas/'; // Se establece la url de la API para insertar una nueva zona
+            url = '../../php/post_zona.php'; // Asigno la url de la API
             break;
         case 'cliente':
-            datitos = { // Creo un objeto con los datos del formulario (JSON)
-                idcliente: document.getElementById("numContrato").value, // document.getElementById("idcliente") es un objeto de tipo input
-                nombrecliente: document.getElementById("nombre").value.toUpperCase(), // document.getElementById("nombre") es un objeto de tipo input
-                appatcliente: document.getElementById("apellidoP").value.toUpperCase(), // document.getElementById("apellidoP") es un objeto de tipo input
-                apmatcliente: document.getElementById("apellidoM").value.toUpperCase(), // document.getElementById("apellidoM") es un objeto de tipo input
-                contracliente: await hashearContraseña(document.getElementById("password-input").value), // document.getElementById("password-input") es un objeto de tipo input donde se usa la función para encriptar la contraseña
-                correocliente: document.getElementById("email").value, // document.getElementById("email") es un objeto de tipo input
-                callecliente: document.getElementById("calle").value.toUpperCase(), // document.getElementById("calle") es un objeto de tipo input
-                colcliente: document.getElementById("listadesplegable").value.toUpperCase(), // document.getElementById("colonia") es un objeto de tipo input
-                numextcliente: document.getElementById("numext").value, // document.getElementById("numext") es un objeto de tipo input
-                cpcliente: document.getElementById("cp").value, // document.getElementById("cp") es un objeto de tipo input
+            contra1 = document.getElementById("password-input").value;
+            contra2 = document.getElementById("password-input2").value;
+            if (contra1 == contra2) {
+                datitos = { // Creo un objeto con los datos del formulario (JSON)
+                    idcliente: document.getElementById("numContrato").value, // document.getElementById("idcliente") es un objeto de tipo input
+                    nombrecliente: document.getElementById("nombre").value.toUpperCase(), // document.getElementById("nombre") es un objeto de tipo input
+                    appatcliente: document.getElementById("apellidoP").value.toUpperCase(), // document.getElementById("apellidoP") es un objeto de tipo input
+                    apmatcliente: document.getElementById("apellidoM").value.toUpperCase(), // document.getElementById("apellidoM") es un objeto de tipo input
+                    contracliente: contra1,
+                    correocliente: document.getElementById("email").value, // document.getElementById("email") es un objeto de tipo input
+                    callecliente: document.getElementById("calle").value.toUpperCase(), // document.getElementById("calle") es un objeto de tipo input
+                    colcliente: document.getElementById("listadesplegable").value.toUpperCase(), // document.getElementById("colonia") es un objeto de tipo input
+                    numextcliente: document.getElementById("numext").value, // document.getElementById("numext") es un objeto de tipo input
+                    cpcliente: document.getElementById("cp").value, // document.getElementById("cp") es un objeto de tipo input
+                }
+                url = 'php/post_cliente.php'; // Asigno la url de la API
+            } else {
+                alert("Las contraseñas no coinciden");
+                return;
             }
-            url = 'http://localhost:8000/api/clientes/'; // Se establece la url de la API para insertar un nuevo cliente
             break;
         case 'reporte':
             datitos = { // Creo un objeto con los datos del formulario (JSON)
@@ -50,9 +47,10 @@ async function post(entidad) { // Función para enviar los datos del formulario 
                 estatusrep: "Enviado", // document.getElementById("estatusrep") es un objeto de tipo input
                 clavecliente: document.getElementById("numContrato").value, // document.getElementById("clavecliente") es un objeto de tipo input
             }
-            url = 'http://localhost:8000/api/reportes/'; // Se establece la url de la API para insertar un nuevo reporte
             break;
     }
+
+    console.log(JSON.stringify(datitos));
 
     fetch(url, {
         method: 'POST',
@@ -61,14 +59,29 @@ async function post(entidad) { // Función para enviar los datos del formulario 
         },
         body: JSON.stringify(datitos)
     }) // Hago una petición POST al servidor
-        // alert("Se ha registrado correctamente")
-        .then(response => response.json()) // Devuelve otra promesa
-        // alert("Karla")
+    .then(response => response.text()) // Devuelve otra promesa
+    alert("Se ha registrado correctamente")
         .then(data => { // Devuelve otra promesa
             // Manejar la respuesta de la API
-            alert("Se ha registrado correctamente")
+            console.log(data);
         })
         .catch(error => { // Devuelve otra promesa
             console.error('Error al enviar los datos:', error); // Imprimir en consola
         });
 }
+
+// function get_cp_zona(zona) {
+//     return fetch('php/get_zonas.php') // Devuelve una promesa
+//         .then(response => response.text()) // Devuelve otra promesa
+//         .then(data => {
+//             data.forEach(item => {
+//                 if(item.colonia == zona)
+//                     return item.codigoPostal;
+//             });
+//         })
+//         .catch(error => { // Devuelve otra promesa
+//             // Capturar y manejar errores
+//             console.error('Error en la solicitud:', error); // Imprimir en consola
+//             throw error; // Lanzar excepción
+//         });
+// }
