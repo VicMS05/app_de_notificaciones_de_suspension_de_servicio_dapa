@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/styles_menu.css">
-    <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/styles_menu.css">
+    <link rel="icon" href="../../img/logopestañanofond.png" type="image/png">
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 
-    <title>DAPA</title>
+    <title>Eliminar zona</title>
 </head>
 <body>
 
     <!-- Header  con botones de Iniciar Sesión y Crear Cuenta-->
     <div style="padding-left: 20%;">
         <header>
-            <img src="\img\headerdapa.jpg" alt="header Dapa" class="header">
+            <img src="..\..\img\headerdapa.jpg" alt="header Dapa" class="header">
         </header>
         </div>
 </header>
@@ -24,7 +24,7 @@
         <div class="menu__side" id="responsive-div">
             <div class="name__page">
                 <i class="fa-solid fa-circle-user"></i>
-                <h4>*inserte nombre*</h4>
+                <!-- <h4>*inserte nombre*</h4> -->
             </div>
 
             <div class="options__menu">	
@@ -57,21 +57,21 @@
                     </div>
                 </a>
     
-                <a href="editar_zona.html" class="selected">
+                <a href="editar_zona.html">
                     <div class="option">
                         <i class="fa-solid fa-pen-to-square" title="Editar zona"></i>
                         <h4>Editar zona</h4>
                     </div>
                 </a>
     
-                <a href="eliminar_zona.html">
+                <a href="eliminar_zona.html" class="selected">
                     <div class="option">
                         <i class="fa-solid fa-trash" title="Eliminar zona"></i>
                         <h4>Eliminar zona</h4>
                     </div>
                 </a>
     
-                <a href="../src/sccmfmmvmsjepm/login_admin.html">
+                <a href="login_admin.html">
                     <div class="option">
                         <i class="fa-solid fa-right-from-bracket" title="Cerrar sesion"></i>
                         <h4>Cerrar Sesion</h4>
@@ -83,9 +83,9 @@
     <article>
         <div style="position: relative; left: 150px;">
         <section class="zones-section">
-            <h2>Editar catálogo de zonas</h2>
+            <h2>Eliminar zona(s)</h2>
             <br>
-            <table>
+            <table id="catalogoZonas">
                 <thead>
                     <tr>
                         <th>Código postal</th>
@@ -96,16 +96,21 @@
                     <!-- Aquí se llenarán dinámicamente los datos de la tabla -->
                 </tbody>
             </table>
-            <a href="panel_admin.html"><button id="btnGuardarCambios">Guardar cambios</button></a>
+            <div>
+            <button id="btnGuardarCambiosE">Guardar cambios</button>
+            <!-- <a href="panel_admin.html"><button>Regresar</button></a> -->
+            </div>
         </section>
     </div>
     </article>
     <!-- Footer -->
     <div style="padding-left: 20%;">
-        <footer>
-            <p>&copy; 2023 Departamento de Asistencia y Problemas de Áreas (DAPA)</p>
-        </footer>
-        </div>
-
+    <footer>
+        <p>&copy; 2023 Departamento de Asistencia y Problemas de Áreas (DAPA)</p>
+    </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/alert.js"></script>
+    <script src="../../js/get_catalogo_zonas.js"></script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+/* PARA EL REPORTE DE FALLAS */
+
+.container_pantalla {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    /* position: relative; */
+    /* width: 100%; Puedes ajustar el ancho según tus necesidades */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 48px;
+    text-align: center;
+    }
+  
+    .container_pantalla input{
+      background-color: #eee;
+      border: none;
+      margin: 8px 0;
+      padding: 10px 15px;
+      font-size: 13px;
+      border-radius: 8px;
+      width: 100%;
+      outline: none;
+    }
+  
+  .container {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    /* position: relative; */
+    /* width: 100%; Puedes ajustar el ancho según tus necesidades */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    text-align: center;
+    }
+  
+  .inputs{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    max-width: 500px; /* Ajusta el valor según tus necesidades */
+  }
+  .container button {
+    background-color: #2ecc71;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    /* text-transform: uppercase; */
+    margin-top: 10px;
+    cursor: pointer;
+    }
+
+    .containerinput {
+      background-color: #eee;
+      border: none;
+      margin: 8px 0;
+      padding: 10px 15px;
+      font-size: 13px;
+      border-radius: 8px;
+      width: 100%;
+      outline: none;
+  }
+  
+  

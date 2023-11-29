@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles_rf.css">
+    <link rel="stylesheet" href="../css/styles_az.css">
+    <!-- <link rel="stylesheet" href="../css/styles_login.css"> -->
+    <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
+
+    <title>Inicio</title>
+</head>
+
+<body>
+
+    <!-- Header  con botones de Iniciar Sesión y Crear Cuenta-->
+    <header>
+        <img src="\img\headerdapa.jpg" alt="header Dapa" class="header">
+        <div class="header-buttons">
+            <a href="../index.html"><button style="position: absolute; top: 60px; right: 20px;">Cerrar
+                    sesión</button></a>
+        </div>
+    </header>
+    <article>
+        <!-- Main Content -->
+        <br>
+        <div class="container" id="container" style="background-color: #add8e6">
+
+            <!-- <div class="form-container sign-up">  -->
+
+            <h2>Reporte de Fallas</h2>
+            <br>
+            <form class="inputs" autocomplete="off">
+                <input id="cp" text="text" class="containerinput" placeholder="Código Postal">
+                <select class="containerinput" id="sector" title="Selecciona tu colonia" required>
+                    <option disabled selected>Elige el sector</option>
+                </select>
+                <input id="numContrato" type="text" class="containerinput" autocomplete="off"
+                    placeholder="Número de Contrato">
+                <!-- <input id="motivo" type="text" class="containerinput" autocomplete="off"
+                    placeholder="Motivo de Reporte"> -->
+                <select class="containerinput" id="motivo" title="Selecciona el motivo de reporte" required>
+                    <option disabled selected>Elige el motivo</option>
+                    <option>FUGA DE AGUA</option>
+                    <option>MEDIDOR ROTO</option>
+                    <option>FALTA DE AGUA</option>
+                </select>
+                <input id="fecha" type="date" class="containerinput" autocomplete="off" placeholder="Fecha de Reporte" min="2023-11-27">
+                <br><br>
+                <button onclick="post('reporte')" style="background-color: #2d81c5; font-size: large;">Reportar</button>
+            </form>
+        </div>
+        </div>
+        <br><br>
+        <section class="report-section">
+            <h2>Historial del reporte de fallas </h2>
+            <br>
+            <table>
+                <thead>
+                    <!-- <h6>Por favor eliga el estatus que desea editar: </h6> -->
+                    <tr>
+                        <th>Número de seguimiento</th>
+                        <th>Sector</th>
+                        <th>Motivo de reporte</th>
+                        <th>Estatus del reporte</th>
+                        <th>Fecha de reporte</th>
+                    </tr>
+                </thead>
+                <tbody>
+            </table>
+        </section>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Departamento de Asistencia y Problemas de Áreas (DAPA)</p>
+    </footer>
+    <script src="../js/post.js"></script>
+    <script src="../js/get_lista_zonas.js"></script>
+</body>
+
+</html>

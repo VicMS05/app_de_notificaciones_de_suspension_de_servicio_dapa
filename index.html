@@ -2,88 +2,111 @@
 <html lang="es">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/styles_ocultar.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<title>Login Cliente</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles_login.css">
+  <link rel="stylesheet" href="css/styles_ocultar.css">
+  <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Inicio de sesión</title>
 </head>
 
 
 <body class="login">
-<div class="container" id="container">
-<div class="form-container sign-up">
+  <div class="container" id="container">
+    <div class="form-container sign-up">
 
-<form>
-<h1>Crear cuenta</h1>
-<!-- <div class="social-icons">
+      <form autocomplete="off">
+        <h1>Crear cuenta</h1>
+        <!-- <div class="social-icons">
 <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
 <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a> <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
 <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
 </div> -->
-<!-- <span>or use your email for registeration</span> -->
-<input type="text" placeholder="Nombre(s)">
-<input type="text" placeholder="Apellido Paterno">
-<input type="text" placeholder="Apellido Materno">
-<input type="email" placeholder="Correo Electrónico">
-<input type="text" placeholder="Sector">
-<input type="text" placeholder="Número de contrato">
-<div class="passwordocultar">
-    <!-- Input de la contraseña -->
-    <input id="password-input" class="password-input" type="password" placeholder="Ingresa tu contraseña">
-    <!-- Botón de mostrar/ocultar -->
-    <button id="password-button" class="password-button" style="background-color: white; padding: 5px; margin: 5px;">
-      <!-- Icono de ojo cerrado por defecto -->
-      <i id="password-icon" class="fas fa-eye-slash"></i>
-    </button>
-  </div>
+        <!-- <span>or use your email for registeration</span> -->
+        <input id="nombre" type="text" placeholder="Nombre(s)" required>
+        <input id="apellidoP" type="text" placeholder="Apellido paterno" required>
+        <input id="apellidoM" type="text" placeholder="Apellido materno" required>
+        <input id="calle" type="text" placeholder="Calle" required>
+        <input id="numext" type="number" onmousewheel="return false;" min="0" max="9999" placeholder="Número exterior"
+          required>
+        <select class="containerinput" id="listadesplegable" title="Selecciona tu colonia" required>
+          <option>Selecciona tu colonia</option>
+        </select>
+        <input id="cp" type="number" onmousewheel="return false;" min="0" max="79999" placeholder="Código postal"
+          required>
+        <input id="numContrato" type="number" onmousewheel="return false;" min="0" max="99999"
+          placeholder="Número de contrato" required>
+        <input id="email" type="email" placeholder="Correo electrónico" required>
+        <div class="passwordocultar">
+          <!-- Input de la contraseña -->
+          <input id="password-input" class="password-input" type="password" placeholder="Ingresa tu contraseña"
+            required>
+          <!-- Botón de mostrar/ocultar -->
+          <button id="password-button" class="password-button"
+            style="background-color: white; padding: 5px; margin: 5px;" title="Ocultar/Mostrar">
+            <!-- Icono de ojo cerrado por defecto -->
+            <i id="password-icon" class="fas fa-eye-slash"></i>
+          </button>
+        </div>
 
-<button href="login_cliente.html">Registrarse</button>
-</form>
-</div>
-<div class="form-container sign-in">
-<form>
-<h1>Iniciar Sesión</h1>
-<!-- <div class="social-icons">
+        <button type="button" onclick="post('cliente')" id="registarBtn1">Registrarse</button>
+      </form>
+    </div>
+    <div class="form-container sign-in">
+      <form autocomplete="off">
+        <h1>Iniciar Sesión</h1>
+        <!-- <div class="social-icons">
 <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
 <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
 <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
 <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
 </div> -->
-<!-- <span>or use your email password</span> -->
-<!-- <label for="usuario">Correo o número de contrato:</label> -->
-<input type="text" id="usuario" name="usuario" placeholder="Correo electrónico o número de contrato">
-<div class="passwordocultar">
-    <!-- Input de la contraseña -->
-    <input id="password-input1" class="password-input" type="password" placeholder="Ingresa tu contraseña">
-    <!-- Botón de mostrar/ocultar -->
-    <button id="password-button1" class="password-button" style="background-color: white; padding: 5px; margin: 5px;">
-      <!-- Icono de ojo cerrado por defecto -->
-      <i id="password-icon1" class="fas fa-eye-slash"></i>
-    </button>
+        <!-- <span>or use your email password</span> -->
+        <!-- <label for="usuario">Correo o número de contrato:</label> -->
+        <input type="text" id="usuario" name="usuario" placeholder="Número de contrato" required>
+        <div class="passwordocultar">
+          <!-- Input de la contraseña -->
+          <input id="contraseña" class="password-input" type="password" placeholder="Ingresa tu contraseña"
+            required>
+          <!-- Botón de mostrar/ocultar -->
+          <button id="password-button1" class="password-button"
+            style="background-color: white; padding: 5px; margin: 5px;" title="Ocultar/Mostrar">
+            <!-- Icono de ojo cerrado por defecto -->
+            <i id="password-icon1" class="fas fa-eye-slash"></i>
+          </button>
+        </div>
+        <!-- <a href="#">Forget Your Password?</a> -->
+        <button href="" onclick="validarInicioSesion('cliente')">Iniciar Sesión</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+
+        <div class="toggle-panel toggle-left">
+          <img src="img/logodapawhite.png"
+            style="width: 74%; height: 18%; position: absolute; top: 70px; left: 40px;" title="Logo DAPA">
+          <h1>¡Bienvenido(a) de nuevo!</h1>
+          <p>Explore recursos y servicios específicos para usted.</p>
+          <button class="hidden" id="login">Iniciar Sesión</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>¡Bienvenido(a) al portal de reportes DAPA</h1>
+          <img src="img/logodapawhite.png"
+            style="width: 74%; height: 18%; position: absolute; top: 60px; left: 50px;" title="Logo DAPA">
+          <p> Regístrese ahora para acceder a servicios personalizados y recursos exclusivos.</p>
+          <button class="hidden" id="register">Crear una cuenta</button>
+        </div>
+      </div>
+    </div>
   </div>
-<!-- <a href="#">Forget Your Password?</a> -->
-<button href="">Iniciar Sesión</button>
-</form>
-</div>
-<div class="toggle-container">
-<div class="toggle">
-<div class="toggle-panel toggle-left">
-<h1>¡Bienvenido(a) de nuevo!</h1>
-<p>Explore recursos y servicios específicos para usted.</p>
-<button class="hidden" id="login">Iniciar Sesión</button>
-</div>
-<div class="toggle-panel toggle-right">
-<h1>¡Bienvenido(a) al portal de la DAPA!</h1>
-<p> Regístrese ahora para acceder a servicios personalizados y recursos exclusivos.</p>
-<button class="hidden" id="register">Crear una cuenta</button>
-</div>
-</div>
-</div>
-</div>
-<script src="../js/prueba.js"></script>
-<script src="../js/contraseña.js"></script>
+  <script src="js/animaciones_login.js"></script>
+  <script src="js/ojito_contraseña.js"></script>
+  <script src="js/get_lista_zonas.js"></script>
+  <script src="js/post.js"></script>
+  <script src="js/validar_login.js"></script>
 </body>
+
 </html>
