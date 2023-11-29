@@ -43,11 +43,11 @@ async function post(entidad) { // Función para enviar los datos del formulario 
             }
             url = 'http://localhost:8000/api/clientes/'; // Se establece la url de la API para insertar un nuevo cliente
             break;
-        case 'reporte': //Pendiente
+        case 'reporte':
             datitos = { // Creo un objeto con los datos del formulario (JSON)
                 motivorep: document.getElementById("motivo").value.toUpperCase(), // document.getElementById("motivorep") es un objeto de tipo input
-                fechareporte: document.getElementById("fecha").value, // document.getElementById("fechareporte") es un objeto de tipo input
-                estatusrep: document.getElementById("estatus").value.toUpperCase(), // document.getElementById("estatusrep") es un objeto de tipo input
+                fecharep: document.getElementById("fecha").value, // document.getElementById("fechareporte") es un objeto de tipo input
+                estatusrep: "Enviado", // document.getElementById("estatusrep") es un objeto de tipo input
                 clavecliente: document.getElementById("numContrato").value, // document.getElementById("clavecliente") es un objeto de tipo input
             }
             url = 'http://localhost:8000/api/reportes/'; // Se establece la url de la API para insertar un nuevo reporte
@@ -61,10 +61,12 @@ async function post(entidad) { // Función para enviar los datos del formulario 
         },
         body: JSON.stringify(datitos)
     }) // Hago una petición POST al servidor
-        alert("Se ha registrado correctamente")
+        // alert("Se ha registrado correctamente")
         .then(response => response.json()) // Devuelve otra promesa
+        // alert("Karla")
         .then(data => { // Devuelve otra promesa
             // Manejar la respuesta de la API
+            alert("Se ha registrado correctamente")
         })
         .catch(error => { // Devuelve otra promesa
             console.error('Error al enviar los datos:', error); // Imprimir en consola

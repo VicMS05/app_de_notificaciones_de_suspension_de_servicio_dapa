@@ -1,5 +1,5 @@
 // Obtener la referencia al elemento de lista desplegable en el DOM
-const listaDesplegable = document.getElementById('listadesplegable');
+const listaDesplegable = document.getElementById('sector');
 
 // Realizar la solicitud GET con Fetch
 fetch('http://localhost:8000/api/zonas/') // Devuelve una promesa

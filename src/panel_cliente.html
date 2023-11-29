@@ -10,7 +10,7 @@
     <!-- <link rel="stylesheet" href="../css/styles_login.css"> -->
     <link rel="icon" href="../img/logopestañanofond.png" type="image/png">
 
-    <title>DAPA</title>
+    <title>Inicio</title>
 </head>
 
 <body>
@@ -32,14 +32,24 @@
 
             <h2>Reporte de Fallas</h2>
             <br>
-            <form class="inputs">
-                <input text="text" class="containerinput" placeholder="Código Postal">
-                <input type="text" class="containerinput" autocomplete="off" placeholder="Sector">
-                <input type="text" class="containerinput" autocomplete="off" placeholder="Número de Contrato">
-                <input type="text" class="containerinput" autocomplete="off" placeholder="Motivo de Reporte">
-                <input type="date" class="containerinput" autocomplete="off" placeholder="Fecha de Reporte">
+            <form class="inputs" autocomplete="off">
+                <input id="cp" text="text" class="containerinput" placeholder="Código Postal">
+                <select class="containerinput" id="sector" title="Selecciona tu colonia" required>
+                    <option disabled selected>Elige el sector</option>
+                </select>
+                <input id="numContrato" type="text" class="containerinput" autocomplete="off"
+                    placeholder="Número de Contrato">
+                <!-- <input id="motivo" type="text" class="containerinput" autocomplete="off"
+                    placeholder="Motivo de Reporte"> -->
+                <select class="containerinput" id="motivo" title="Selecciona el motivo de reporte" required>
+                    <option disabled selected>Elige el motivo</option>
+                    <option>FUGA DE AGUA</option>
+                    <option>MEDIDOR ROTO</option>
+                    <option>FALTA DE AGUA</option>
+                </select>
+                <input id="fecha" type="date" class="containerinput" autocomplete="off" placeholder="Fecha de Reporte" min="2023-11-27">
                 <br><br>
-                <button style="background-color: #2d81c5; font-size: large;">Reportar</button>
+                <button onclick="post('reporte')" style="background-color: #2d81c5; font-size: large;">Reportar</button>
             </form>
         </div>
         </div>
@@ -67,7 +77,8 @@
     <footer>
         <p>&copy; 2023 Departamento de Asistencia y Problemas de Áreas (DAPA)</p>
     </footer>
-
+    <script src="../js/post.js"></script>
+    <script src="../js/get_lista_zonas.js"></script>
 </body>
 
 </html>

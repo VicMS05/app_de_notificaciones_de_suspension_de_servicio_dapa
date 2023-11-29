@@ -11,7 +11,7 @@ async function validarInicioSesion(entidad) { // Función para validar el inicio
     var usuario = document.getElementById("usuario").value; // Se obtiene el valor del usuario
     var contraseña = await hashearContraseña(document.getElementById("contraseña").value); // Se obtiene el valor de la contraseña y se encripta con la funcion hashearContraseña
     var url; // Variable para almacenar la url de la API
-    
+
     switch (entidad) { // Seleccionar la entidad a la que se va a acceder
         case 'administrador':
             url = 'http://localhost:8000/api/administrador/' + usuario; // Se establece la url de la API para que ingrese con el correo
@@ -20,17 +20,17 @@ async function validarInicioSesion(entidad) { // Función para validar el inicio
             // if (isNaN(usuario)) { // Si el usuario no es un número
             //     url = 'http://localhost:8000/api/cliente_correo/' + usuario; // Se establece la url de la API para que ingrese con el correo
             // } else {
-                url = 'http://localhost:8000/api/cliente/' + usuario; // Se establece la url de la API para que ingrese con el numero de contrato
+            url = 'http://localhost:8000/api/cliente/' + usuario; // Se establece la url de la API para que ingrese con el numero de contrato
             // }
             break;
     }
 
-    alert(url + " | " + usuario + " | " + contraseña)
+    // alert(url + " | " + usuario + " | " + contraseña)
 
     fetch(url)
-    .then(response => response.json())
-    alert("Hola")
-    .then(data => {
+        .then(response => response.json())
+        // alert(response.json()
+        .then(data => {
             alert("Hola1")
             switch (entidad) {
                 case 'cliente':
