@@ -30,12 +30,12 @@ function validarInicioSesion(entidad) { // Función para validar el inicio de se
         .then(data => {
             switch (entidad) {
                 case 'cliente':
-                    if (data.mensaje == "Validación exitosa") { // Si la validación es correcta
-                        alert("Bienvenido " + data.nombrecliente + " " + data.appatcliente + " " + data.apmatcliente); // Se muestra un mensaje de bienvenida
+                    if (data.mensaje == "Autenticación exitosa") { // Si la validación es correcta
+                        alert("Bienvenido " + datitos.usuario); // Se muestra un mensaje de bienvenida
                         window.open("src/panel_cliente.html", "_self"); // Se redirecciona a la página del cliente
                     } else {
                         console.log(data);
-                        alert(data.mensaje);
+                        alert("Error al iniciar sesión, verifique sus datos"); // Se muestra un mensaje de error
                     }
                     break;
             }

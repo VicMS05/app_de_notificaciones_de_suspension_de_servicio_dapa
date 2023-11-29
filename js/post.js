@@ -42,11 +42,13 @@ async function post(entidad) { // Función para enviar los datos del formulario 
             break;
         case 'reporte':
             datitos = { // Creo un objeto con los datos del formulario (JSON)
+                sectorrep: document.getElementById("listadesplegable").value.toUpperCase(), // document.getElementById("sectorrep") es un objeto de tipo input
                 motivorep: document.getElementById("motivo").value.toUpperCase(), // document.getElementById("motivorep") es un objeto de tipo input
                 fecharep: document.getElementById("fecha").value, // document.getElementById("fechareporte") es un objeto de tipo input
                 estatusrep: "Enviado", // document.getElementById("estatusrep") es un objeto de tipo input
                 clavecliente: document.getElementById("numContrato").value, // document.getElementById("clavecliente") es un objeto de tipo input
             }
+            url = '../php/post_reporte.php'; // Asigno la url de la API
             break;
     }
 

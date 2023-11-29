@@ -1,6 +1,4 @@
-// Obtener la referencia al elemento de lista desplegable en el DOM
-const listaDesplegable = document.getElementById('sector');
-
+const listadesplegable = document.getElementById('sector');
 // Realizar la solicitud GET con Fetch
 fetch('php/get_zonas.php') // Devuelve una promesa
   .then(response => { // Devuelve otra promesa
