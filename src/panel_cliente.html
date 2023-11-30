@@ -1,7 +1,3 @@
-<?php
-ob_start();
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,7 +34,7 @@ ob_start();
             <br>
             <form class="inputs" autocomplete="off">
                 <input id="cp" text="text" class="containerinput" placeholder="Código Postal">
-                <select class="containerinput" id="sector" title="Selecciona tu colonia" onchange="llenarLista('panel')"
+                <select class="containerinput" id="sector" title="Selecciona tu colonia"
                     required>
                     <option disabled selected>Elige el sector</option>
                 </select>
@@ -88,7 +84,3 @@ ob_start();
 </body>
 
 </html>
-
-<?php
-ob_end_flush();
-?>

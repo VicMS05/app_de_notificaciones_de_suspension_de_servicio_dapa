@@ -3,12 +3,20 @@ async function post(entidad) { // Función para enviar los datos del formulario 
 
     switch (entidad) {
         case 'administrador':
-            datitos = { // Creo un objeto con los datos del formulario (JSON)
-                nombreadmin: document.getElementById("nombre").value.toUpperCase(), // document.getElementById("nombre") es un objeto de tipo input
-                appatadmin: document.getElementById("apellidoP").value.toUpperCase(), // document.getElementById("apellidoP") es un objeto de tipo input
-                apmatadmin: document.getElementById("apellidoM").value.toUpperCase(), // document.getElementById("apellidoM") es un objeto de tipo input
-                contraadmin: document.getElementById("password-input").value, // document.getElementById("password-input") es un objeto de tipo input donde se usa la función para encriptar la contraseña
-                correoadmin: document.getElementById("email").value, // document.getElementById("email") es un objeto de tipo input
+            contra1 = document.getElementById("password-input").value;
+            contra2 = document.getElementById("password-input2").value;
+            if (contra1 == contra2) {
+                datitos = { // Creo un objeto con los datos del formulario (JSON)
+                    nombreadmin: document.getElementById("nombre").value.toUpperCase(), // document.getElementById("nombre") es un objeto de tipo input
+                    appatadmin: document.getElementById("apellidoP").value.toUpperCase(), // document.getElementById("apellidoP") es un objeto de tipo input
+                    apmatadmin: document.getElementById("apellidoM").value.toUpperCase(), // document.getElementById("apellidoM") es un objeto de tipo input
+                    contraadmin: contra1,
+                    correoadmin: document.getElementById("email").value, // document.getElementById("email") es un objeto de tipo input
+                }
+                url = '../../php/post_administrador.php'; // Asigno la url de la API
+            } else {
+                alert("Las contraseñas no coinciden");
+                return;
             }
             break;
         case 'zona':
@@ -32,7 +40,7 @@ async function post(entidad) { // Función para enviar los datos del formulario 
                     callecliente: document.getElementById("calle").value.toUpperCase(), // document.getElementById("calle") es un objeto de tipo input
                     colcliente: document.getElementById("listadesplegable").value.toUpperCase(), // document.getElementById("colonia") es un objeto de tipo input
                     numextcliente: document.getElementById("numext").value, // document.getElementById("numext") es un objeto de tipo input
-                    cpcliente: document.getElementById("cp").value, // document.getElementById("cp") es un objeto de tipo input
+                    cpcliente: document.getElementById("cp").value // document.getElementById("cp") es un objeto de tipo input
                 }
                 url = 'php/post_cliente.php'; // Asigno la url de la API
             } else {
@@ -42,11 +50,11 @@ async function post(entidad) { // Función para enviar los datos del formulario 
             break;
         case 'reporte':
             datitos = { // Creo un objeto con los datos del formulario (JSON)
-                sectorrep: document.getElementById("listadesplegable").value.toUpperCase(), // document.getElementById("sectorrep") es un objeto de tipo input
+                sectorrep: document.getElementById("sector").value.toUpperCase(), // document.getElementById("sectorrep") es un objeto de tipo input
                 motivorep: document.getElementById("motivo").value.toUpperCase(), // document.getElementById("motivorep") es un objeto de tipo input
                 fecharep: document.getElementById("fecha").value, // document.getElementById("fechareporte") es un objeto de tipo input
                 estatusrep: "Enviado", // document.getElementById("estatusrep") es un objeto de tipo input
-                clavecliente: document.getElementById("numContrato").value, // document.getElementById("clavecliente") es un objeto de tipo input
+                clavecliente: document.getElementById("numContrato").value // document.getElementById("clavecliente") es un objeto de tipo input
             }
             url = '../php/post_reporte.php'; // Asigno la url de la API
             break;
@@ -61,7 +69,7 @@ async function post(entidad) { // Función para enviar los datos del formulario 
         },
         body: JSON.stringify(datitos)
     }) // Hago una petición POST al servidor
-    .then(response => response.text()) // Devuelve otra promesa
+        .then(response => response.text()) // Devuelve otra promesa
     alert("Se ha registrado correctamente")
         .then(data => { // Devuelve otra promesa
             // Manejar la respuesta de la API

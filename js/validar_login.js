@@ -8,11 +8,10 @@ function validarInicioSesion(entidad) { // Función para validar el inicio de se
 
     switch (entidad) { // Seleccionar la entidad a la que se va a acceder
         case 'administrador':
-            alert("entro1");
-            // url = '../../php/post_validar_login.php'; // Se establece la url de la API para que ingrese con el correo
+            url = '../../php/post_validar_login_administrador.php'; // Se establece la url de la API para que ingrese con el correo
             break;
         case 'cliente':
-            url = 'php/post_validar_login.php'; // Se establece la url de la API para que ingrese con el numero de contrato            
+            url = 'php/post_validar_login_cliente.php'; // Se establece la url de la API para que ingrese con el numero de contrato            
             break;
     }
 
@@ -29,9 +28,18 @@ function validarInicioSesion(entidad) { // Función para validar el inicio de se
         .then(response => response.json())
         .then(data => {
             switch (entidad) {
+                case 'administrador':
+                    if (data.mensaje == "Autenticación exitosa") { // Si la validación es correcta
+                        alert("Bienvenidx " + datitos.usuario); // Se muestra un mensaje de bienvenida
+                        window.open("panel_admin.html", "_self"); // Se redirecciona a la página del administrador
+                    } else {
+                        console.log(data);
+                        alert("Error al iniciar sesión, verifique sus datos"); // Se muestra un mensaje de error
+                    }
+                    break;
                 case 'cliente':
                     if (data.mensaje == "Autenticación exitosa") { // Si la validación es correcta
-                        alert("Bienvenido " + datitos.usuario); // Se muestra un mensaje de bienvenida
+                        alert("Bienvenidx " + datitos.usuario); // Se muestra un mensaje de bienvenida
                         window.open("src/panel_cliente.html", "_self"); // Se redirecciona a la página del cliente
                     } else {
                         console.log(data);
